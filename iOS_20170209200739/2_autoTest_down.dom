@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AppiumAUT>
+  <UIAApplication dom="" enabled="true" height="647" hint=""
+    label="autoTest" name="autoTest" path="/0" valid="true" value=""
+    visible="true" width="375" x="0" y="20">
+    <UIAWindow dom="" enabled="true" height="667" hint="" label=""
+      name="" path="/0/0" valid="true" value="" visible="true"
+      width="375" x="0" y="0">
+      <UIAButton dom="" enabled="true" height="100" hint="" label="test"
+        name="test" path="/0/0/0" valid="true" value="" visible="true"
+        width="200" x="87.5" y="283.5"/>
+    </UIAWindow>
+    <UIAWindow dom="" enabled="true" height="667" hint="" label=""
+      name="" path="/0/1" valid="true" value="" visible="false"
+      width="375" x="0" y="0"/>
+    <UIAWindow dom="" enabled="true" height="667" hint="" label=""
+      name="" path="/0/2" valid="true" value="" visible="true"
+      width="375" x="0" y="0">
+      <UIAStatusBar dom="" enabled="true" height="20" hint="" label=""
+        name="" path="/0/2/0" valid="true" value="" visible="true"
+        width="375" x="0" y="0">
+        <UIAElement dom="" enabled="true" height="20"
+          hint="Swipe down with three fingers to reveal the notification center., Swipe up with three fingers to reveal the control center, Double-tap to scroll to top"
+          label=""
+          name="Swipe down with three fingers to reveal the notification center., Swipe up with three fingers to reveal the control center, Double-tap to scroll to top"
+          path="/0/2/0/0" valid="true" value="" visible="true"
+          width="38" x="6" y="0"/>
+        <UIAElement dom="" enabled="true" height="20"
+          hint="Swipe down with three fingers to reveal the notification center., Swipe up with three fingers to reveal the control center, Double-tap to scroll to top"
+          label="3 of 3 Wi-Fi bars" name="3 of 3 Wi-Fi bars"
+          path="/0/2/0/1" valid="true" value="" visible="true"
+          width="13" x="49" y="0"/>
+        <UIAElement dom="" enabled="true" height="20"
+          hint="Swipe down with three fingers to reveal the notification center., Swipe up with three fingers to reveal the control center, Double-tap to scroll to top"
+          label="8:08 PM" name="8:08 PM" path="/0/2/0/2" valid="true"
+          value="" visible="true" width="47" x="164" y="0"/>
+        <UIAElement dom="" enabled="true" height="20"
+          hint="Swipe down with three fingers to reveal the notification center., Swipe up with three fingers to reveal the control center, Double-tap to scroll to top"
+          label="100% battery power" name="100% battery power"
+          path="/0/2/0/3" valid="true" value="" visible="true"
+          width="25" x="345" y="0"/>
+      </UIAStatusBar>
+    </UIAWindow>
+  </UIAApplication>
+</AppiumAUT>
