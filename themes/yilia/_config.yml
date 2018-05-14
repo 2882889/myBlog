@@ -52,6 +52,8 @@ alipay: /img/alipay.jpg
 # 微信二维码图片地址
 weixin: /img/alipay.jpg
 
+canvas: /JavaScript/canvas-nest.js
+
 # Miscellaneous
 baidu_analytics: ''
 google_analytics: ''
