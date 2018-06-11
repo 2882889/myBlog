@@ -1,10 +1,8 @@
-
 ---
 title: iOS的CF和OC中间的类型转换
 date: 2017-01-11 11:10:12
 tags: iOS
 ---
-
 
 # iOS的CF和OC中间的类型转换 #
 
@@ -13,7 +11,6 @@ tags: iOS
 `Toll-Free bridged`  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息.
 
 说的简单点,就是OC中的有些类型,通过`Toll-Free bridged` 既可以当做Core Foundation的类型使用(CFxxxx),又可以当做Foundation的类型使用(NSxxxx).
-
 
 
 <!----- more ----->

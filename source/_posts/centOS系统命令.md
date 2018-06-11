@@ -1,7 +1,7 @@
 ---
-title: centOS Linux系统命令
+title: centOS Linux系统命令--VPS那些事
 date: 2016-12-11 11:02:30
-tags: VPS那些事
+tags: Linux
 ---
 
 ## 升级系统 ##
@@ -21,6 +21,8 @@ yum -y install wget
 ```
 uname -r
 ```
+
+<!----- more ----->
 
 ## 修改内核 ##
 ```

@@ -1,4 +1,8 @@
-
+---
+title: 读《iOS与OS X多线程和内存管理》——前言
+date: 2017-01-11 11:10:12
+tags: iOS
+---
 
 # 前言 #
 
@@ -7,9 +11,11 @@
 
 那么究竟是什么样的代码，居然有如此神奇的功效，闲话少叙，上代码：
 
+<!----- more ----->
+
 代码一：
 
-```
+```mm
 @interface MyView ()
 
 @property (nonatomic, weak) UILabel *label;
@@ -33,7 +39,7 @@ _label = label;
 
 代码二：
 
-```
+```objectivec
 @interface MyView ()
 
 @property (nonatomic, strong) UILabel *label;
@@ -57,11 +63,9 @@ self.label.text = @"你好";
 
 本着不耻下问，虚心求教的态度我问了一下我同事，得到了这样的解答：
 
-代码一的属性使用的 ```weak``` 修饰，因为在 ```addSubview：``` 的时候 ```self``` 会强引用 ```label```对象
- ```weak``` 修饰的成员变量 ```_label``` 弱引用着 ```label```对象
+代码一的属性使用的 ```weak``` 修饰，因为在 ```addSubview：``` 的时候 ```self``` 会强引用 ```label``` 对象 ```weak``` 修饰的成员变量 ```_label``` 弱引用着 ```label```对象
 
-代码二的属性使用 ```strong``` 修饰， 在 ```addSubview：``` 的时候 ```self``` 会强引用 ```label```对象
- ```strong``` 修饰的成员变量 ```_label``` 也强引用着 ```label```对象
+代码二的属性使用 ```strong``` 修饰， 在 ```addSubview：``` 的时候 ```self``` 会强引用 ```label```对象 ```strong``` 修饰的成员变量 ```_label``` 也强引用着 ```label``` 对象
 
 第一种代码的好处是在 ```self```移除 ```label```的时候 ```label```对象就释放了。因为 ```label```只有一个 ```self```强引用着
 
