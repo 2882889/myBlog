@@ -100,6 +100,52 @@ vi shadowsocks.json
 ssserver -c /etc/shadowsocks.json -d start | stop
 ```
 
+4. 配置定时任务
+
+在vps的内存比较小的时候，shadowsocks容易被系统给kill掉，这时，我们就要有个定时任务去查看shadowsocks的服务状态
+
+首先，创建一个查看服务脚本
+
+```
+#! /bin/sh
+
+proc_name="shadowsocks.json"
+
+number=`ps -ef | grep $proc_name | grep -v grep | wc -l`
+
+if [ $number -eq 0 ];then
+        ssserver -c /etc/shadowsocks.json -d start
+else
+        ssserver -c /etc/shadowsocks.json -d restart
+fi
+```
+
+给脚本添加运行权限
+
+```
+chmod 777 xxxx.sh
+```
+
+将脚本加入定时任务中
+
+```
+crontab -e  //打开定时任务配置
+```
+
+加入上面的脚本
+
+```
+*/1 * * * * ./xxx.sh  //注意脚本路径
+
+```
+
+启动定时任务
+
+```
+service crond start
+```
+
+
 
 ## 安装使用Apache ##
 
