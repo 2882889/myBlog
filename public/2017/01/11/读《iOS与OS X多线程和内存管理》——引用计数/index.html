@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -93,7 +93,7 @@
 要说自动引用计数，首先要说什么是”引用计数”
 1.1引用计数什么是引用计数，书中举了一个生活中开关房间灯的例子。
 简单的描述一下就是，第一个人来的时候要开灯(创建对象)，最后一个人走的时候要关灯(释放对象)，中间来人走人都不">
-<meta property="og:updated_time" content="2018-05-16T09:00:14.108Z">
+<meta property="og:updated_time" content="2018-06-06T12:11:39.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读《iOS与OS X多线程和内存管理》——引用计数">
 <meta name="twitter:description" content="1. 什么是自动引用计数(ARC)ARC简而言之就是编译器自动进行内存管理，那为什么不叫”自动内存管理”，而叫”自动引用计数”，当然是因为内存管理是的方法是通过引用计数实现的
@@ -107,7 +107,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -335,7 +335,7 @@
 <p>对象的操作与Objective-C方法的对应<br>生成并持有对象—— alloc/new/copy/mutableCopy 等<br>持有对象———– retain<br>释放对象———– release<br>废弃对象———– dealloc</p>
 <h2 id="2-alloc-retain-release-dealloc-实现"><a href="#2-alloc-retain-release-dealloc-实现" class="headerlink" title="2.alloc/retain/release/dealloc 实现"></a>2.alloc/retain/release/dealloc 实现</h2><p>书中这个节研究的是alloc/retain/release/dealloc的实现。</p>
 <p>讲之前先说一个我不知道的常识，那就是Objective-C的框架，底层的是一个叫Cocoa框架其中包含一个Foundation框架</p>
-<p>首先Objective-C内存管理的方法是包含在Cocoa框架中的，这里所说的内存管理是的方法alloc/retain/release/dealloc 指的是 NSObject类的alloc类方法,retain实例方法,release实例方法和dealloc实例方法，但是NSObject类的 <figure class="highlight plain"><figcaption><span>框架没有公开过源码，所以这里使用开源软件GNUstep的框架，一个能和Cocoa框架互换的框架，来理解苹果Cocoa框架的实现。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里我把代码给大家写出来，供大家参考，但书的作者把有些地方的源码在不改变意思的范围进行了修改</div><div class="line"></div><div class="line">### 2.1 alloc 实现 ###</div><div class="line"></div><div class="line">GNUstep的```alloc```实现：</div><div class="line"></div><div class="line"></div><div class="line">```mm</div><div class="line">+(id)alloc</div><div class="line">&#123;</div><div class="line">    return [self allocWithZone:NSDefaultMallocZone()];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (id)allocWithZone:(NSZone *)z</div><div class="line">&#123;</div><div class="line">    return NSAllocateObject (self, 0, z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ------- NSAllocateObject ------- */</div><div class="line">struct obj_layout &#123;</div><div class="line">    NSUInteger retained;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">inline id NSAllocateObject (Class aClass, NSUInteger extraBytes, NSZone *zone)</div><div class="line">&#123;</div><div class="line">    int size = 计算容纳对象所需内存大小；</div><div class="line">    id new = NSZoneMalloc(zone,size);</div><div class="line">    memset(new, 0, size);</div><div class="line">    new = (id)&amp;((struct obj_layout *) new)[1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ----- 简化版alloc ----- */</div><div class="line">+ alloc</div><div class="line">&#123;</div><div class="line">    int size = sizeof(struct obj_layout) + 对象大小;</div><div class="line">    struct obj_layout *p = (struct obj_layout *)calloc(1,size);</div><div class="line">    return(id)(p+1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>首先Objective-C内存管理的方法是包含在Cocoa框架中的，这里所说的内存管理是的方法alloc/retain/release/dealloc 指的是 NSObject类的alloc类方法,retain实例方法,release实例方法和dealloc实例方法，但是NSObject类的 Foundation<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里我把代码给大家写出来，供大家参考，但书的作者把有些地方的源码在不改变意思的范围进行了修改</div><div class="line"></div><div class="line">### 2.1 alloc 实现 ###</div><div class="line"></div><div class="line">GNUstep的```alloc```实现：</div><div class="line"></div><div class="line"></div><div class="line">```mm</div><div class="line">+(id)alloc</div><div class="line">&#123;</div><div class="line">    return [self allocWithZone:NSDefaultMallocZone()];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (id)allocWithZone:(NSZone *)z</div><div class="line">&#123;</div><div class="line">    return NSAllocateObject (self, 0, z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ------- NSAllocateObject ------- */</div><div class="line">struct obj_layout &#123;</div><div class="line">    NSUInteger retained;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">inline id NSAllocateObject (Class aClass, NSUInteger extraBytes, NSZone *zone)</div><div class="line">&#123;</div><div class="line">    int size = 计算容纳对象所需内存大小；</div><div class="line">    id new = NSZoneMalloc(zone,size);</div><div class="line">    memset(new, 0, size);</div><div class="line">    new = (id)&amp;((struct obj_layout *) new)[1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ----- 简化版alloc ----- */</div><div class="line">+ alloc</div><div class="line">&#123;</div><div class="line">    int size = sizeof(struct obj_layout) + 对象大小;</div><div class="line">    struct obj_layout *p = (struct obj_layout *)calloc(1,size);</div><div class="line">    return(id)(p+1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>简化版的是去掉了 <figure class="highlight plain"><figcaption><span>之后的代码，```NSZone``` 是为了防止内存碎片化引入的结构，对内存管理没有影响，所以可以忽略。从简化版的代码中可以看出 ```GNUstep``` 申请的对象的内存比需要的大了 ```sizeof(struct obj_layout)```，这个多出来的空间就是用来存放引用计数的</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">在非ARC即MRC中是可以通过 ```retainCount``` 查看对象的引用计数的。</div><div class="line"></div><div class="line">retainCount的实现:</div><div class="line"></div><div class="line">```mm</div><div class="line">- (NSUInteger)retainCount</div><div class="line">&#123;</div><div class="line">    return NSExtraRefCount(self) + 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">inline NSUInteger NSExtraRefCount(id anObject)</div><div class="line">&#123;</div><div class="line">    return((struct obj_layout *) anObject)[-1].retained;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="2-2-retain-实现"><a href="#2-2-retain-实现" class="headerlink" title="2.2 retain 实现"></a>2.2 retain 实现</h3><p>GNUstep的 <figure class="highlight plain"><figcaption><span>实现：</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```mm</div><div class="line">- (id)retain</div><div class="line">&#123;</div><div class="line">    NSIncrementExtraRefCount(self);</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">inline void NSIncrementExtraRefCount(id anObject)</div><div class="line">&#123;</div><div class="line">    if(((struct obj_layout *)anObject)[-1].retained == UINT_MAX -1)</div><div class="line">        抛出异常</div><div class="line">    ((struct obj_layout *)anObject)[-1].retained++;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="2-3-release-实现"><a href="#2-3-release-实现" class="headerlink" title="2.3 release 实现"></a>2.3 release 实现</h3><p>GNUstep的 <figure class="highlight plain"><figcaption><span>实现：</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```mm</div><div class="line">- (void)release</div><div class="line">&#123;</div><div class="line">    if(NSDecrementExtraRefCountWasZero(self))</div><div class="line">        [self dealloc];</div><div class="line">&#125;</div><div class="line"></div><div class="line">BOOL NSDecrementExtraRefCountWasZero(id anObject)</div><div class="line">&#123;</div><div class="line">    if(((struct obj_layout *)anObject)[-1].retained == 0)&#123;</div><div class="line">        return YES;</div><div class="line">    &#125;else &#123;</div><div class="line">        ((struct obj_layout *)anObject)[-1].retained--;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -376,8 +376,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/11/appium测试时候的那些事/" rel="next" title="appium测试时候的那些事">
-                <i class="fa fa-chevron-left"></i> appium测试时候的那些事
+              <a href="/2017/01/11/读《iOS与OS X多线程和内存管理》——前言/" rel="next" title="读《iOS与OS X多线程和内存管理》——前言">
+                <i class="fa fa-chevron-left"></i> 读《iOS与OS X多线程和内存管理》——前言
               </a>
             
           </div>
@@ -386,8 +386,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/11/bridged/" rel="prev" title="iOS的CF和OC中间的类型转换">
-                iOS的CF和OC中间的类型转换 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/28/Untitled/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -446,7 +446,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -552,6 +552,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpeg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpeg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpeg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/header.jpeg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/header.jpeg">
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="WeView 介绍WeView 使用的一个简单的demo 
+
+WeView 是一个用来给iOS界面自动布局的工具库
+
+
+WeView 2是iOS Auto Layout 的替代品.
+WeView 2旨在提供一个”简单”,”自然”,”易描述”,”易维护”的方法通过UIKit去创建动态适应的界面
+WeView 2使用直观的描述性方法来布局,如”alignment”(对齐),”margins”(边距),">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小商店飞的地盘">
+<meta property="og:url" content="http://yoursite.com/2018/07/04/WeView 2 使用翻译/WeView 2 使用翻译/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="WeView 介绍WeView 使用的一个简单的demo 
+
+WeView 是一个用来给iOS界面自动布局的工具库
+
+
+WeView 2是iOS Auto Layout 的替代品.
+WeView 2旨在提供一个”简单”,”自然”,”易描述”,”易维护”的方法通过UIKit去创建动态适应的界面
+WeView 2使用直观的描述性方法来布局,如”alignment”(对齐),”margins”(边距),">
+<meta property="og:image" content="http://yoursite.com/resources/9AF089FB76B2ADB18C4B3E9423098F77.jpg">
+<meta property="og:updated_time" content="2018-07-04T09:32:19.677Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小商店飞的地盘">
+<meta name="twitter:description" content="WeView 介绍WeView 使用的一个简单的demo 
+
+WeView 是一个用来给iOS界面自动布局的工具库
+
+
+WeView 2是iOS Auto Layout 的替代品.
+WeView 2旨在提供一个”简单”,”自然”,”易描述”,”易维护”的方法通过UIKit去创建动态适应的界面
+WeView 2使用直观的描述性方法来布局,如”alignment”(对齐),”margins”(边距),">
+<meta name="twitter:image" content="http://yoursite.com/resources/9AF089FB76B2ADB18C4B3E9423098F77.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/04/WeView 2 使用翻译/WeView 2 使用翻译/"/>
+
+
+
+
+
+  <title> | 小商店飞的地盘</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小商店飞的地盘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一切都是梵天的一场梦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/WeView 2 使用翻译/WeView 2 使用翻译/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小商店飞">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小商店飞的地盘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-04T17:32:19+08:00">
+                2018-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="WeView-介绍"><a href="#WeView-介绍" class="headerlink" title="WeView 介绍"></a>WeView 介绍</h1><h2 id="WeView-使用的一个简单的demo"><a href="#WeView-使用的一个简单的demo" class="headerlink" title="WeView 使用的一个简单的demo"></a>WeView 使用的一个简单的demo</h2><p> <img src="resources/9AF089FB76B2ADB18C4B3E9423098F77.jpg" alt="WeView_demo.png"></p>
+<blockquote>
+<p>WeView 是一个用来给iOS界面自动布局的工具库</p>
+</blockquote>
+<ul>
+<li>WeView 2是iOS Auto Layout 的替代品.</li>
+<li>WeView 2旨在提供一个”简单”,”自然”,”易描述”,”易维护”的方法通过UIKit去创建动态适应的界面</li>
+<li>WeView 2使用直观的描述性方法来布局,如”alignment”(对齐),”margins”(边距),”spacing” (间距).</li>
+<li>WeView 2构建在iOS现有的大小和布局机制.</li>
+<li>WeView 2是轻量级的:不超过5k行代码而且没有别的依赖.</li>
+<li>WeView 2兼容iOS5及以上版本.</li>
+<li>WeView 2是免费开源的,遵循” Apache License Version 2.0”</li>
+<li>WeView 2是易学的.</li>
+</ul>
+<h1 id="为什么使用动态布局"><a href="#为什么使用动态布局" class="headerlink" title="为什么使用动态布局"></a>为什么使用动态布局</h1><blockquote>
+<p>使用动态布局的原因有很多,不管你使用的是iOS Auto Layout还是WeView.动态布局会让界面做到如下几点:</p>
+</blockquote>
+<ol>
+<li>适应不同的屏幕尺寸</li>
+<li>适应方向的改变(eg:横屏和竖屏)</li>
+<li>适应设计的改变(eg:字体大小的改变,添加或移除子view,改变图片大小等)</li>
+<li>适应文本内容的改变</li>
+<li>适应动态内容的改变(eg:下载完成的内容)</li>
+</ol>
+<h1 id="为什么使用WeView-2"><a href="#为什么使用WeView-2" class="headerlink" title="为什么使用WeView 2"></a>为什么使用WeView 2</h1><blockquote>
+<p>摘要: iOS Auto Layout 是一种复杂笨拙效率低下的编码方式</p>
+</blockquote>
+<ul>
+<li>概念复杂:在使用iOS Auto Layout的时候,你需要考虑”约束优先级”,”约束是否完全”,”约束是否冲突”(eg:过约束布局),”最近共同祖先”等,这些问题也使代码重构变的复杂</li>
+<li>缺乏基准:iOS Auto Layout 是基于一个复杂的约束处理系统,任何view的最终位置和大小都会收受到约束系统中的所有约束的影响,这些约束不需要被他们的父view持有,如果不能理解相邻view的层级就不能进行约束</li>
+<li>编码复杂:用iOS Auto Layout布局一个按钮水平居中,底部距离父view20pt</li>
+</ul>
+<h2 id="iOS-Auto-Layout-代码"><a href="#iOS-Auto-Layout-代码" class="headerlink" title="iOS Auto Layout 代码"></a>iOS Auto Layout 代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">UIButton *button = ...;</div><div class="line">UIView *superview = ...;</div><div class="line">NSLayoutConstraint *cn = [NSLayoutConstraint constraintWithItem:button</div><div class="line">                                                      attribute:NSLayoutAttributeCenterX</div><div class="line">                                                      relatedBy:NSLayoutRelationEqual</div><div class="line">                                                         toItem:superview</div><div class="line">                                                      attribute:NSLayoutAttributeCenterX</div><div class="line">                                                     multiplier:1.0</div><div class="line">                                                       constant:0.0];</div><div class="line">[superview addConstraint:cn];</div><div class="line">cn = [NSLayoutConstraint constraintWithItem:button</div><div class="line">                                  attribute:NSLayoutAttributeBottom</div><div class="line">                                  relatedBy:NSLayoutRelationEqual</div><div class="line">                                     toItem:superview</div><div class="line">                                  attribute:NSLayoutAttributeBottom</div><div class="line">                                 multiplier:1.0</div><div class="line">                                   constant:-20.0];</div><div class="line">[superview addConstraint:cn];</div></pre></td></tr></table></figure>
+<h2 id="使用Visual-Format-Language的Auto-Layout"><a href="#使用Visual-Format-Language的Auto-Layout" class="headerlink" title="使用Visual Format Language的Auto Layout"></a>使用Visual Format Language的Auto Layout</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">UIButton *button = ...;</div><div class="line">UIView *superview = ...;</div><div class="line">NSDictionary *variableMap = NSDictionaryOfVariableBindings(label, superview);</div><div class="line">NSLayoutConstraint *cn = [NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:[button]-12-[superview]&quot;</div><div class="line">                                                                 options:0</div><div class="line">                                                                 metrics:nil</div><div class="line">                                                                   views:variableMap];</div><div class="line">[superview addConstraint:cn];</div><div class="line">cn = [NSLayoutConstraint constraintsWithVisualFormat:@&quot;H:[superview]-(&lt;=1)-[button]&quot;</div><div class="line">                                             options:NSLayoutFormatAlignAllCenterY</div><div class="line">                                             metrics:nil</div><div class="line">                                               views:variableMap];</div><div class="line">[superview addConstraint:cn];</div></pre></td></tr></table></figure>
+<h2 id="使用WeView"><a href="#使用WeView" class="headerlink" title="使用WeView"></a>使用WeView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;WeView.h&quot;</div><div class="line"></div><div class="line">UIButton *button = ...; </div><div class="line">WeView *panelView = [[WeView alloc] init]; </div><div class="line">[[[[panelView addSubviewWithCustomLayout:button]</div><div class="line">   setHAlign:H_ALIGN_CENTER]</div><div class="line">  setVAlign:V_ALIGN_BOTTOM]</div><div class="line">setMargin:20];</div></pre></td></tr></table></figure>
+<p>iOS Auto Layout 在xib中比较有优势,而且xib已经在Xcode5中被显著提高,但是在代码编程中自动布局还是很复杂的</p>
+<p>WeView 只能被用作代码编程,但可以被设计的简洁明了,利于维护的代码</p>
+<h1 id="指导-1-概述"><a href="#指导-1-概述" class="headerlink" title="指导 1: 概述"></a>指导 1: 概述</h1><p>略</p>
+<h1 id="指导-2-安装"><a href="#指导-2-安装" class="headerlink" title="指导 2: 安装"></a>指导 2: 安装</h1><p>添加WeView文件夹到工程中就好.</p>
+<p>WeView 2只依赖Foundation ,UIKit 和 Quartz Core库而且需要iOS 5及以上版本</p>
+<h2 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h2><p>头文件通常只需要导入 <code>#import &quot;WeView.h&quot;</code></p>
+<h2 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h2><ul>
+<li><code>WeView</code> 容器是核心类,他本身只有添加子view和他们布局的方法</li>
+<li><code>WeView</code> 的布局是由WeViewLayout实现的</li>
+<li><code>UIView + WeView</code> 类别为UIView添加了许多布局属性,用来控制view怎么作为子view布局在他的父view上,这些属性存放在一个关联的对象中,且这个对象只有一个</li>
+</ul>
+<h1 id="指导-3-术语"><a href="#指导-3-术语" class="headerlink" title="指导 3:术语"></a>指导 3:术语</h1><h2 id="View-Hierarchy-图层"><a href="#View-Hierarchy-图层" class="headerlink" title="View Hierarchy (图层)"></a>View Hierarchy (图层)</h2><p>图层是布局作用的上下文,通常我们只需要关系我们布局view的子view和父view</p>
+<h2 id="Superview-amp-Subviews-父view和子view"><a href="#Superview-amp-Subviews-父view和子view" class="headerlink" title="Superview &amp; Subviews (父view和子view)"></a>Superview &amp; Subviews (父view和子view)</h2><p>在布局上下文中,Superview是父view,而他的子view是Subviews(注意:Superview只有一个但是Subviews是可以有多个的),在使用WeView 2布局的时候,通常父view是一个<code>WeView</code>,子View可以是任何类型的UIView</p>
+<p>WeView 2工作的时候子View不需要引用任何类或实现任何界面</p>
+<h2 id="Widgets-vs-Containers-控件和容器"><a href="#Widgets-vs-Containers-控件和容器" class="headerlink" title="Widgets vs. Containers (控件和容器)"></a>Widgets vs. Containers (控件和容器)</h2><p>widgets(控件) :一个界面上可见的元素 eg:button或label等</p>
+<p>containers(容器) :通常是一些不可见的view,用来组织结构和布局其他view eg:在HTML中DIVs通常被用作容器,在UIKit中,空白view也通常被使用.WeView 2的核心就是<code>WeView</code>容器类,通过给容器添加子view作为内容</p>
+<h2 id="Measurement-and-Arrangement"><a href="#Measurement-and-Arrangement" class="headerlink" title="Measurement and Arrangement"></a>Measurement and Arrangement</h2><p>Measurement :是view的size推测位置的过程<br>eg:measurement 类似于<code>[UIView sizeThatFies:]</code>方法</p>
+<p>Arrangement :是view的size决定位置的过程<br>eg:arrangement 类似于<code>[UIView layoutSubviews]</code>方法</p>
+<h2 id="Desired-Size"><a href="#Desired-Size" class="headerlink" title="Desired Size"></a>Desired Size</h2><p>有时候view想要一个他们想要的大小.eg:一个button想要大小是icon的大小,或label想要大小是文本的大小.这时候的大小就是view的Desired Size</p>
+<p>使用Weview 2的时候我们可以完全放心的忽视 intrinsic size(固有大小)</p>
+<h2 id="Frame-and-Bounds"><a href="#Frame-and-Bounds" class="headerlink" title="Frame and Bounds"></a>Frame and Bounds</h2><p>UIViews 使用了两套坐标系统.<br>frame :UIView的frame是他在他父view的坐标系统中的大小和位置<br>bounds :UIView的bounds是他在他自己的坐标系统中的大小和位置</p>
+<p>布局子view的时候是在他的父view的坐标系中操作的,所以操作的是子view的frame.</p>
+<p>改变一个view的frame会影响他的bounds,反之也是一样的</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/04/加密算法/加密算法/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/04/Xcode8 报错resource fork, Finder information, or similar detritus not allowed/Xcode8 报错resource fork, Finder information, or similar detritus not allowed/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小商店飞</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

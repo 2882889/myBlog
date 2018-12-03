@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpeg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpeg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpeg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/header.jpeg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/header.jpeg">
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="OC中使用静态库中的类别的问题OC的源文件经过 clang 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.
+在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC使用静态库中的类别">
+<meta property="og:url" content="http://yoursite.com/2017/04/05/OC使用静态库中的类别/OC使用静态库中的类别/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="OC中使用静态库中的类别的问题OC的源文件经过 clang 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.
+在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编">
+<meta property="og:updated_time" content="2018-07-04T09:32:28.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC使用静态库中的类别">
+<meta name="twitter:description" content="OC中使用静态库中的类别的问题OC的源文件经过 clang 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.
+在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/05/OC使用静态库中的类别/OC使用静态库中的类别/"/>
+
+
+
+
+
+  <title>OC使用静态库中的类别 | 小商店飞的地盘</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小商店飞的地盘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一切都是梵天的一场梦</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/05/OC使用静态库中的类别/OC使用静态库中的类别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小商店飞">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小商店飞的地盘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OC使用静态库中的类别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-05T20:02:30+08:00">
+                2017-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="OC中使用静态库中的类别的问题"><a href="#OC中使用静态库中的类别的问题" class="headerlink" title="OC中使用静态库中的类别的问题"></a>OC中使用静态库中的类别的问题</h2><p>OC的源文件经过 <code>clang</code> 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.</p>
+<p>在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编译器只会为类生成连接符号,不会对类中的方法生成连接符号,由于Category方法并不对应一个新类,所以不会生成连接符号,连接器也不会将Category方法合并到原始的类中,最终导致连接器忽略了Category方法,不会将其连接到可执行文件中.</p>
+<blockquote>
+<p>在OC使用静态库中的类别,需要设置下面5种方法中的一种</p>
+</blockquote>
+<h2 id="Other-Linker-Flags-设置"><a href="#Other-Linker-Flags-设置" class="headerlink" title="Other Linker Flags 设置"></a>Other Linker Flags 设置</h2><ul>
+<li><ol>
+<li>通过在Other Linder Flags 添加 <code>-all\_load</code> 它会告诉编译器对”所有文档中的所有对象文件,不管里面的符号有没有被用到,全部都载入”,这样会产生比较大的二进制文件</li>
+</ol>
+</li>
+<li><p>2.通过在Other Linder Flags 添加 <code>-force\_load 和指定路径</code> e.g: <code>-force\_load $(SRCROOT)/RHAddressBook/libRHAddressBook.a</code> 这种方法会只载入指定的归档</p>
+</li>
+<li><p>3.通过在Other Linder Flags 添加 <code>-ObjC</code> ,这个标识告诉编译器”如果在文档中发现了OC代码,就把文档载入” </p>
+</li>
+<li><p>4.在Xcode里build setting中的 Perform Single-Object PreLink，如果启用这个选项，所有的对象文件都会被合并成一个单文件（这不是真正的链接，所以叫做预链接），这个对象文件（有时被称做主对象文件(master object file)）被添加到文档中。现在如果主对象文件中的任何符号被认为是“在使用”，整个主对象文件都会被认为在使用，这样它里面的OC部分就会被载入了。因为里面的类都被正常符号化了，所以能使从这样的静态库中使用所有的Category</p>
+</li>
+<li><p>5.最后一种解决方法是在只有Category的源文件里添加Fake symbol。如果你想在运行时使用Category，一定要确保你以某种方法在编译时引用了fake symbol，这会使得对象文件以及它里面的OC代码被载入。例如，它可以是一个有空函数体的函数，也可以是一个被访问的全局变量（例如一个全局的int变量，只要它被读或者写了一次就足够了）。和上面其他的解决方法不一样，这种解决方法可以控制哪些category可以在运行时被编译后的代码使用（可以通过使用这个符号，使它们被链接并变得可用；也可以不使用这个符号，这样链接器就会忽略它）</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/31/Xcode8 报错resource fork, Finder information, or similar detritus not allowed/" rel="next" title="Xcode8报错">
+                <i class="fa fa-chevron-left"></i> Xcode8报错
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/05/OC使用静态库中的类别/" rel="prev" title="OC使用静态库中的类别">
+                OC使用静态库中的类别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小商店飞</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

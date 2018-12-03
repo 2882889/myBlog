@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -93,7 +93,7 @@
 安装wgetwget是一个从网络上自动下载文件的自由工具，支持通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载，并可以使用HTTP代理。wget名称的由来是“World Wide Web”与“get”的结合
 1yum -y install wget
 查看当前内核版本1uname -r">
-<meta property="og:updated_time" content="2018-05-15T07:37:05.437Z">
+<meta property="og:updated_time" content="2018-08-29T07:57:16.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="centOS Linux系统命令--VPS那些事">
 <meta name="twitter:description" content="升级系统1yum update -y
@@ -107,7 +107,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -346,6 +346,20 @@
 <li>启动、停止</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start | stop</div></pre></td></tr></table></figure>
+<ol>
+<li>配置定时任务</li>
+</ol>
+<p>在vps的内存比较小的时候，shadowsocks容易被系统给kill掉，这时，我们就要有个定时任务去查看shadowsocks的服务状态</p>
+<p>首先，创建一个查看服务脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#! /bin/sh</div><div class="line"></div><div class="line">proc_name=&quot;shadowsocks.json&quot;</div><div class="line"></div><div class="line">number=`ps -ef | grep $proc_name | grep -v grep | wc -l`</div><div class="line"></div><div class="line">if [ $number -eq 0 ];then</div><div class="line">        ssserver -c /etc/shadowsocks.json -d start</div><div class="line">else</div><div class="line">        ssserver -c /etc/shadowsocks.json -d restart</div><div class="line">fi</div></pre></td></tr></table></figure>
+<p>给脚本添加运行权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 777 xxxx.sh</div></pre></td></tr></table></figure>
+<p>将脚本加入定时任务中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">crontab -e  //打开定时任务配置</div></pre></td></tr></table></figure>
+<p>加入上面的脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * ./xxx.sh  //注意脚本路径</div></pre></td></tr></table></figure>
+<p>启动定时任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service crond start</div></pre></td></tr></table></figure>
 <h2 id="安装使用Apache"><a href="#安装使用Apache" class="headerlink" title="安装使用Apache"></a>安装使用Apache</h2><p>在Linux中Apache的名字叫 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查看服务器版本</div></pre></td></tr></table></figure></p>
 <p>apachectl -v<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">安装Apache</div></pre></td></tr></table></figure></p>
 <p>yum install httpd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">打开Apache</div></pre></td></tr></table></figure></p>
@@ -453,7 +467,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -559,6 +573,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
