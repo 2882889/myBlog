@@ -1,87 +1,15 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
   
+  <title>读《iOS与OS X多线程和内存管理》——引用计数 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpeg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/header.jpeg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/header.jpeg?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/header.jpeg?v=5.1.4" color="#222">
-
-
-  <link rel="manifest" href="/images/header.jpeg">
-
-
-
-
-  <meta name="keywords" content="iOS," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="1. 什么是自动引用计数(ARC)ARC简而言之就是编译器自动进行内存管理，那为什么不叫”自动内存管理”，而叫”自动引用计数”，当然是因为内存管理是的方法是通过引用计数实现的
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 什么是自动引用计数(ARC)ARC简而言之就是编译器自动进行内存管理，那为什么不叫”自动内存管理”，而叫”自动引用计数”，当然是因为内存管理是的方法是通过引用计数实现的
 要说自动引用计数，首先要说什么是”引用计数”
 1.1引用计数什么是引用计数，书中举了一个生活中开关房间灯的例子。
 简单的描述一下就是，第一个人来的时候要开灯(创建对象)，最后一个人走的时候要关灯(释放对象)，中间来人走人都不">
@@ -93,231 +21,200 @@
 要说自动引用计数，首先要说什么是”引用计数”
 1.1引用计数什么是引用计数，书中举了一个生活中开关房间灯的例子。
 简单的描述一下就是，第一个人来的时候要开灯(创建对象)，最后一个人走的时候要关灯(释放对象)，中间来人走人都不">
-<meta property="og:updated_time" content="2018-05-16T09:00:14.108Z">
+<meta property="og:updated_time" content="2018-06-06T12:11:39.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读《iOS与OS X多线程和内存管理》——引用计数">
 <meta name="twitter:description" content="1. 什么是自动引用计数(ARC)ARC简而言之就是编译器自动进行内存管理，那为什么不叫”自动内存管理”，而叫”自动引用计数”，当然是因为内存管理是的方法是通过引用计数实现的
 要说自动引用计数，首先要说什么是”引用计数”
 1.1引用计数什么是引用计数，书中举了一个生活中开关房间灯的例子。
 简单的描述一下就是，第一个人来的时候要开灯(创建对象)，最后一个人走的时候要关灯(释放对象)，中间来人走人都不">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2017/01/11/读《iOS与OS X多线程和内存管理》——引用计数/"/>
-
-
-
-
-
-  <title>读《iOS与OS X多线程和内存管理》——引用计数 | 小商店飞的地盘</title>
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
   
 
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-
-
-
-
-
-
+  
 </head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
 
-  
-  
-    
-  
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/appium/" style="font-size: 10px;">appium</a> <a href="/tags/hello/" style="font-size: 10px;">hello</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">小商店飞的地盘</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">一切都是梵天的一场梦</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+				
+			</div>
+		</div>
+	</header>				
 </div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
 </nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+      <div class="body-wrap"><article id="post-读《iOS与OS X多线程和内存管理》——引用计数" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/11/读《iOS与OS X多线程和内存管理》——引用计数/" class="article-date">
+  	<time datetime="2017-01-11T03:10:12.000Z" itemprop="datePublished">2017-01-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/11/读《iOS与OS X多线程和内存管理》——引用计数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小商店飞">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小商店飞的地盘">
-    </span>
-
+      <input type="hidden" class="isFancy" />
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">读《iOS与OS X多线程和内存管理》——引用计数</h1>
-        
+  
+    <h1 class="article-title" itemprop="name">
+      读《iOS与OS X多线程和内存管理》——引用计数
+      
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-11T11:10:12+08:00">
-                2017-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
       
-      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
 
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-什么是自动引用计数-ARC"><a href="#1-什么是自动引用计数-ARC" class="headerlink" title="1. 什么是自动引用计数(ARC)"></a>1. 什么是自动引用计数(ARC)</h2><p>ARC简而言之就是编译器自动进行内存管理，那为什么不叫”自动内存管理”，而叫”自动引用计数”，当然是因为内存管理是的方法是通过引用计数实现的</p>
 <p>要说自动引用计数，首先要说什么是”引用计数”</p>
@@ -335,7 +232,7 @@
 <p>对象的操作与Objective-C方法的对应<br>生成并持有对象—— alloc/new/copy/mutableCopy 等<br>持有对象———– retain<br>释放对象———– release<br>废弃对象———– dealloc</p>
 <h2 id="2-alloc-retain-release-dealloc-实现"><a href="#2-alloc-retain-release-dealloc-实现" class="headerlink" title="2.alloc/retain/release/dealloc 实现"></a>2.alloc/retain/release/dealloc 实现</h2><p>书中这个节研究的是alloc/retain/release/dealloc的实现。</p>
 <p>讲之前先说一个我不知道的常识，那就是Objective-C的框架，底层的是一个叫Cocoa框架其中包含一个Foundation框架</p>
-<p>首先Objective-C内存管理的方法是包含在Cocoa框架中的，这里所说的内存管理是的方法alloc/retain/release/dealloc 指的是 NSObject类的alloc类方法,retain实例方法,release实例方法和dealloc实例方法，但是NSObject类的 <figure class="highlight plain"><figcaption><span>框架没有公开过源码，所以这里使用开源软件GNUstep的框架，一个能和Cocoa框架互换的框架，来理解苹果Cocoa框架的实现。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里我把代码给大家写出来，供大家参考，但书的作者把有些地方的源码在不改变意思的范围进行了修改</div><div class="line"></div><div class="line">### 2.1 alloc 实现 ###</div><div class="line"></div><div class="line">GNUstep的```alloc```实现：</div><div class="line"></div><div class="line"></div><div class="line">```mm</div><div class="line">+(id)alloc</div><div class="line">&#123;</div><div class="line">    return [self allocWithZone:NSDefaultMallocZone()];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (id)allocWithZone:(NSZone *)z</div><div class="line">&#123;</div><div class="line">    return NSAllocateObject (self, 0, z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ------- NSAllocateObject ------- */</div><div class="line">struct obj_layout &#123;</div><div class="line">    NSUInteger retained;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">inline id NSAllocateObject (Class aClass, NSUInteger extraBytes, NSZone *zone)</div><div class="line">&#123;</div><div class="line">    int size = 计算容纳对象所需内存大小；</div><div class="line">    id new = NSZoneMalloc(zone,size);</div><div class="line">    memset(new, 0, size);</div><div class="line">    new = (id)&amp;((struct obj_layout *) new)[1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ----- 简化版alloc ----- */</div><div class="line">+ alloc</div><div class="line">&#123;</div><div class="line">    int size = sizeof(struct obj_layout) + 对象大小;</div><div class="line">    struct obj_layout *p = (struct obj_layout *)calloc(1,size);</div><div class="line">    return(id)(p+1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>首先Objective-C内存管理的方法是包含在Cocoa框架中的，这里所说的内存管理是的方法alloc/retain/release/dealloc 指的是 NSObject类的alloc类方法,retain实例方法,release实例方法和dealloc实例方法，但是NSObject类的 Foundation<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里我把代码给大家写出来，供大家参考，但书的作者把有些地方的源码在不改变意思的范围进行了修改</div><div class="line"></div><div class="line">### 2.1 alloc 实现 ###</div><div class="line"></div><div class="line">GNUstep的```alloc```实现：</div><div class="line"></div><div class="line"></div><div class="line">```mm</div><div class="line">+(id)alloc</div><div class="line">&#123;</div><div class="line">    return [self allocWithZone:NSDefaultMallocZone()];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (id)allocWithZone:(NSZone *)z</div><div class="line">&#123;</div><div class="line">    return NSAllocateObject (self, 0, z);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ------- NSAllocateObject ------- */</div><div class="line">struct obj_layout &#123;</div><div class="line">    NSUInteger retained;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">inline id NSAllocateObject (Class aClass, NSUInteger extraBytes, NSZone *zone)</div><div class="line">&#123;</div><div class="line">    int size = 计算容纳对象所需内存大小；</div><div class="line">    id new = NSZoneMalloc(zone,size);</div><div class="line">    memset(new, 0, size);</div><div class="line">    new = (id)&amp;((struct obj_layout *) new)[1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ----- 简化版alloc ----- */</div><div class="line">+ alloc</div><div class="line">&#123;</div><div class="line">    int size = sizeof(struct obj_layout) + 对象大小;</div><div class="line">    struct obj_layout *p = (struct obj_layout *)calloc(1,size);</div><div class="line">    return(id)(p+1);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>简化版的是去掉了 <figure class="highlight plain"><figcaption><span>之后的代码，```NSZone``` 是为了防止内存碎片化引入的结构，对内存管理没有影响，所以可以忽略。从简化版的代码中可以看出 ```GNUstep``` 申请的对象的内存比需要的大了 ```sizeof(struct obj_layout)```，这个多出来的空间就是用来存放引用计数的</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">在非ARC即MRC中是可以通过 ```retainCount``` 查看对象的引用计数的。</div><div class="line"></div><div class="line">retainCount的实现:</div><div class="line"></div><div class="line">```mm</div><div class="line">- (NSUInteger)retainCount</div><div class="line">&#123;</div><div class="line">    return NSExtraRefCount(self) + 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">inline NSUInteger NSExtraRefCount(id anObject)</div><div class="line">&#123;</div><div class="line">    return((struct obj_layout *) anObject)[-1].retained;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="2-2-retain-实现"><a href="#2-2-retain-实现" class="headerlink" title="2.2 retain 实现"></a>2.2 retain 实现</h3><p>GNUstep的 <figure class="highlight plain"><figcaption><span>实现：</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```mm</div><div class="line">- (id)retain</div><div class="line">&#123;</div><div class="line">    NSIncrementExtraRefCount(self);</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">inline void NSIncrementExtraRefCount(id anObject)</div><div class="line">&#123;</div><div class="line">    if(((struct obj_layout *)anObject)[-1].retained == UINT_MAX -1)</div><div class="line">        抛出异常</div><div class="line">    ((struct obj_layout *)anObject)[-1].retained++;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="2-3-release-实现"><a href="#2-3-release-实现" class="headerlink" title="2.3 release 实现"></a>2.3 release 实现</h3><p>GNUstep的 <figure class="highlight plain"><figcaption><span>实现：</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```mm</div><div class="line">- (void)release</div><div class="line">&#123;</div><div class="line">    if(NSDecrementExtraRefCountWasZero(self))</div><div class="line">        [self dealloc];</div><div class="line">&#125;</div><div class="line"></div><div class="line">BOOL NSDecrementExtraRefCountWasZero(id anObject)</div><div class="line">&#123;</div><div class="line">    if(((struct obj_layout *)anObject)[-1].retained == 0)&#123;</div><div class="line">        return YES;</div><div class="line">    &#125;else &#123;</div><div class="line">        ((struct obj_layout *)anObject)[-1].retained--;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -350,275 +247,106 @@
       
     </div>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/01/11/appium测试时候的那些事/" rel="next" title="appium测试时候的那些事">
-                <i class="fa fa-chevron-left"></i> appium测试时候的那些事
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/11/bridged/" rel="prev" title="iOS的CF和OC中间的类型转换">
-                iOS的CF和OC中间的类型转换 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/28/Untitled/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
-  </article>
+    <a href="/2017/01/11/bridged/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS的CF和OC中间的类型转换</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="读《iOS与OS X多线程和内存管理》——引用计数" data-title="读《iOS与OS X多线程和内存管理》——引用计数" data-url="http://yoursite.com/2017/01/11/读《iOS与OS X多线程和内存管理》——引用计数/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="读《iOS与OS X多线程和内存管理》——引用计数">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
 
 
 
-    <div class="post-spread">
-      
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2018 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
     </div>
   </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">小商店飞</span>
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
+</footer>
+    </div>
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
-    
 
-  </div>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
 </script>
 
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
 
 
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
+  </div>
 </body>
 </html>

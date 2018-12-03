@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OC使用静态库中的类别 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OC中使用静态库中的类别的问题OC的源文件经过 clang 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.
+在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC使用静态库中的类别">
+<meta property="og:url" content="http://yoursite.com/2017/04/05/OC使用静态库中的类别/OC使用静态库中的类别/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="OC中使用静态库中的类别的问题OC的源文件经过 clang 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.
+在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编">
+<meta property="og:updated_time" content="2018-07-04T09:32:28.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC使用静态库中的类别">
+<meta name="twitter:description" content="OC中使用静态库中的类别的问题OC的源文件经过 clang 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.
+在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/appium/" style="font-size: 10px;">appium</a> <a href="/tags/hello/" style="font-size: 10px;">hello</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-OC使用静态库中的类别/OC使用静态库中的类别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/05/OC使用静态库中的类别/OC使用静态库中的类别/" class="article-date">
+  	<time datetime="2017-04-05T12:02:30.000Z" itemprop="datePublished">2017-04-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OC使用静态库中的类别
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="OC中使用静态库中的类别的问题"><a href="#OC中使用静态库中的类别的问题" class="headerlink" title="OC中使用静态库中的类别的问题"></a>OC中使用静态库中的类别的问题</h2><p>OC的源文件经过 <code>clang</code> 编译首先生成中间代码,接着通过优化生成目标代码(目标代码中包括符号表,标示了此代码中的全局符号和静态符号,还标示了导入符号等),连接器会根据符号表分析各个目标代码之间的调用关系,然后将使用到的代码进行连接和重定位,最后生成可执行文件.</p>
+<p>在编译Objective-C源文件到目标文件时,编译器并不知道方法的对应实现,只能在运行时才知道,所以编译器只会为类生成连接符号,不会对类中的方法生成连接符号,由于Category方法并不对应一个新类,所以不会生成连接符号,连接器也不会将Category方法合并到原始的类中,最终导致连接器忽略了Category方法,不会将其连接到可执行文件中.</p>
+<blockquote>
+<p>在OC使用静态库中的类别,需要设置下面5种方法中的一种</p>
+</blockquote>
+<h2 id="Other-Linker-Flags-设置"><a href="#Other-Linker-Flags-设置" class="headerlink" title="Other Linker Flags 设置"></a>Other Linker Flags 设置</h2><ul>
+<li><ol>
+<li>通过在Other Linder Flags 添加 <code>-all\_load</code> 它会告诉编译器对”所有文档中的所有对象文件,不管里面的符号有没有被用到,全部都载入”,这样会产生比较大的二进制文件</li>
+</ol>
+</li>
+<li><p>2.通过在Other Linder Flags 添加 <code>-force\_load 和指定路径</code> e.g: <code>-force\_load $(SRCROOT)/RHAddressBook/libRHAddressBook.a</code> 这种方法会只载入指定的归档</p>
+</li>
+<li><p>3.通过在Other Linder Flags 添加 <code>-ObjC</code> ,这个标识告诉编译器”如果在文档中发现了OC代码,就把文档载入” </p>
+</li>
+<li><p>4.在Xcode里build setting中的 Perform Single-Object PreLink，如果启用这个选项，所有的对象文件都会被合并成一个单文件（这不是真正的链接，所以叫做预链接），这个对象文件（有时被称做主对象文件(master object file)）被添加到文档中。现在如果主对象文件中的任何符号被认为是“在使用”，整个主对象文件都会被认为在使用，这样它里面的OC部分就会被载入了。因为里面的类都被正常符号化了，所以能使从这样的静态库中使用所有的Category</p>
+</li>
+<li><p>5.最后一种解决方法是在只有Category的源文件里添加Fake symbol。如果你想在运行时使用Category，一定要确保你以某种方法在编译时引用了fake symbol，这会使得对象文件以及它里面的OC代码被载入。例如，它可以是一个有空函数体的函数，也可以是一个被访问的全局变量（例如一个全局的int变量，只要它被读或者写了一次就足够了）。和上面其他的解决方法不一样，这种解决方法可以控制哪些category可以在运行时被编译后的代码使用（可以通过使用这个符号，使它们被链接并变得可用；也可以不使用这个符号，这样链接器就会忽略它）</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/05/OC使用静态库中的类别/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          OC使用静态库中的类别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/31/Xcode8 报错resource fork, Finder information, or similar detritus not allowed/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Xcode8报错</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="OC使用静态库中的类别/OC使用静态库中的类别" data-title="OC使用静态库中的类别" data-url="http://yoursite.com/2017/04/05/OC使用静态库中的类别/OC使用静态库中的类别/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="OC使用静态库中的类别">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2018 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
