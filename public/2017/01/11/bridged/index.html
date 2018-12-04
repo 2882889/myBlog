@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <title>iOS的CF和OC中间的类型转换 | 小商店飞的地盘</title>
@@ -9,19 +9,18 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS的CF和OC中间的类型转换Toll-Free bridgedToll-Free bridged  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息.
-说的简单点,就是OC中的有些类型,通过Toll-Free bridged 既可以当做Core F">
+  <meta name="description" content="iOS的CF和OC中间的类型转换Toll-Free bridgedToll-Free bridged  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息. 说的简单点,就是OC中的有些类型,通过Toll-Free bridged 既可以当做Core F">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS的CF和OC中间的类型转换">
 <meta property="og:url" content="http://yoursite.com/2017/01/11/bridged/index.html">
 <meta property="og:site_name" content="小商店飞的地盘">
-<meta property="og:description" content="iOS的CF和OC中间的类型转换Toll-Free bridgedToll-Free bridged  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息.
-说的简单点,就是OC中的有些类型,通过Toll-Free bridged 既可以当做Core F">
-<meta property="og:updated_time" content="2018-05-15T07:35:34.232Z">
+<meta property="og:description" content="iOS的CF和OC中间的类型转换Toll-Free bridgedToll-Free bridged  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息. 说的简单点,就是OC中的有些类型,通过Toll-Free bridged 既可以当做Core F">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-04T15:05:21.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS的CF和OC中间的类型转换">
-<meta name="twitter:description" content="iOS的CF和OC中间的类型转换Toll-Free bridgedToll-Free bridged  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息.
-说的简单点,就是OC中的有些类型,通过Toll-Free bridged 既可以当做Core F">
+<meta name="twitter:description" content="iOS的CF和OC中间的类型转换Toll-Free bridgedToll-Free bridged  是Core Foundation和Foundation之间交换使用数据类型的技术.即同一数据类型既可作为Core Foundation函数的参数,也可以作为接收者向其发送Objective-C消息. 说的简单点,就是OC中的有些类型,通过Toll-Free bridged 既可以当做Core F">
   
     <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
   
@@ -36,7 +35,7 @@
   <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
   
-</head>
+</head></html>
 <body>
   <div id="container">
     <div id="particles-js"></div>
@@ -171,7 +170,7 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-bridged" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-bridged" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/01/11/bridged/" class="article-date">
@@ -181,7 +180,7 @@
   
   <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
+      <input type="hidden" class="isFancy">
     
     
       <header class="article-header">
@@ -218,14 +217,14 @@
 <p>当NSString的实现不是NSCFString的时候（比如我们自己subclass了NSString），我们调用CF函数，就需要先检查对象的具体实现。如果发现其不是NSCFString，我们不会调用CF函数的实现来获得结果，而是通过给对象发送与函数功能相对应的ObjC消息（调用相对应的NSString的接口）来获得其结果。</p>
 <p>例如CFStringGetLength函数，当收到一个作为参数传递进来的对象时，会先确认该对象到底是不是NSCFString实现。如果是的话，就会直接调用CFStringGetLength函数的实现来获得字符串的长度；如果不是的话，会给对象发送length消息（调用NSString的length接口），来得到字符串的长度。</p>
 <h2 id="Toll-Free-bridged的内存管理"><a href="#Toll-Free-bridged的内存管理" class="headerlink" title="Toll-Free bridged的内存管理"></a>Toll-Free bridged的内存管理</h2><p>在ARC中编译器不知道如何处理这个同时拥有ObjC和CFTypeRef指向的对象,所以你必须为编译器提供额外的信息：将类型显示转换为互换类型；同时可能需明确对象的声明周期。 因此我们需要使用 <code>__bridge</code>, <code>__bridge_retained</code>, <code>__bridge_transfer</code> 修饰符告诉编译器该如何去做。</p>
-<h3 id="bridge"><a href="#bridge" class="headerlink" title="__bridge"></a>__bridge</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//objc to cf</span></div><div class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"hello"</span>;</div><div class="line"> <span class="built_in">CFStringRef</span> cfStr = (__bridge <span class="built_in">CFStringRef</span>)str;</div><div class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里不需要release</span></div></pre></td></tr></table></figure>
+<h3 id="bridge"><a href="#bridge" class="headerlink" title="__bridge"></a>__bridge</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//objc to cf</span></span><br><span class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"hello"</span>;</span><br><span class="line"> <span class="built_in">CFStringRef</span> cfStr = (__bridge <span class="built_in">CFStringRef</span>)str;</span><br><span class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里不需要release</span></span><br></pre></td></tr></table></figure>
 <p>编译器会继续负责nsStr的内存管理的事情，不会在bridge的时候retain对象，所以也不需要开发者在CF 一端释放。需要注意的是，当nsStr被释放的时候（比如出了作用域），意味着cfStr指向的对象被释放了，这时如果继续使用cfStr将会引起程序崩溃。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//cf to objc</span></div><div class="line"> <span class="built_in">CFStringRef</span> cfStr = <span class="built_in">CFStringCreateWithCString</span>(kCFAllpacatorDefaule,<span class="string">"hello"</span>,kCFStringEncodingUTF8);</div><div class="line"> <span class="built_in">NSString</span> *str = (__bridge <span class="built_in">NSString</span> *)(cfStr);</div><div class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里需要release</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//cf to objc</span></span><br><span class="line"> <span class="built_in">CFStringRef</span> cfStr = <span class="built_in">CFStringCreateWithCString</span>(kCFAllpacatorDefaule,<span class="string">"hello"</span>,kCFStringEncodingUTF8);</span><br><span class="line"> <span class="built_in">NSString</span> *str = (__bridge <span class="built_in">NSString</span> *)(cfStr);</span><br><span class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里需要release</span></span><br></pre></td></tr></table></figure>
 <p> bridge的时候编译器不会做任何内存管理的事情，bridge之后，编译器会负责ObjC一端的内存管理的事情。同时，开发者需要负责管理CF 一端的内存管理的事情，需要在bridge之后，负责release对象。</p>
 <h3 id="bridge-retained"><a href="#bridge-retained" class="headerlink" title="__bridge_retained"></a>__bridge_retained</h3><p>接着上面的例子，Foundation类型对应的Core Foundation类型时，为了防止str被释放，引起我们使用cfStr的时候程序崩溃，可以使用__bridge_retained修饰符。这意味着，在bridge的时候，编译器会retain对象，而由开发者在CF一端负责release。这样，就算str在objc一端被释放，只要开发者不手动去释放cfStr，其指向的对象就不会被真的销毁。但同时，开发者也必须保证和负责对象的释放。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//objc to cf</span></div><div class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"hello"</span>;</div><div class="line"> <span class="built_in">CFStringRef</span> cfStr = (__bridge_retained <span class="built_in">CFStringRef</span>)str;</div><div class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里不需要release</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//objc to cf</span></span><br><span class="line"> <span class="built_in">NSString</span> *str = <span class="string">@"hello"</span>;</span><br><span class="line"> <span class="built_in">CFStringRef</span> cfStr = (__bridge_retained <span class="built_in">CFStringRef</span>)str;</span><br><span class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里不需要release</span></span><br></pre></td></tr></table></figure>
 <h3 id="bridge-transfer"><a href="#bridge-transfer" class="headerlink" title="__bridge_transfer"></a>__bridge_transfer</h3><p>当Core Foundation类型转化为Foundation类型时，如果使用<strong>bridge修饰符在cf转objc的时候非常的麻烦，我们既需要一个CFTypeRef的变量，还需要在bridge之后负责释放。这时我们可以使用</strong>bridge_transfer，意味着在bridge的时候，编译器转移了对象的所有权，开发者不再需要负责对象的释放。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//cf to objc</span></div><div class="line"> <span class="built_in">CFStringRef</span> cfStr = <span class="built_in">CFStringCreateWithCString</span>(kCFAllpacatorDefaule,<span class="string">"hello"</span>,kCFStringEncodingUTF8);</div><div class="line"> <span class="built_in">NSString</span> *str = (__bridge <span class="built_in">NSString</span> *)(cfStr);</div><div class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里需要release</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//cf to objc</span></span><br><span class="line"> <span class="built_in">CFStringRef</span> cfStr = <span class="built_in">CFStringCreateWithCString</span>(kCFAllpacatorDefaule,<span class="string">"hello"</span>,kCFStringEncodingUTF8);</span><br><span class="line"> <span class="built_in">NSString</span> *str = (__bridge <span class="built_in">NSString</span> *)(cfStr);</span><br><span class="line"> <span class="built_in">CFRelease</span>(cfStr);<span class="comment">//这里需要release</span></span><br></pre></td></tr></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><code>__bridge</code> :编译器在bridge的时候不要做任何事情</li>
 <li><code>__bridge_retained</code> :（ObjC转CF的时候使用）编译器在bridge的时候retain对象，开发者需要在CF一端负责释放对象</li>
@@ -240,11 +239,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/01/11/读《iOS与OS X多线程和内存管理》——引用计数/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/01/11/appium测试时候的那些事/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          读《iOS与OS X多线程和内存管理》——引用计数
+          appium测试时候的那些事
         
       </div>
     </a>
@@ -261,9 +260,9 @@
 </article>
 
 
-<div class="ds-share share" data-thread-key="bridged" data-title="iOS的CF和OC中间的类型转换" data-url="http://yoursite.com/2017/01/11/bridged/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="iOS的CF和OC中间的类型转换">
+<div class="ds-share share" data-thread-key="bridged" data-title="iOS的CF和OC中间的类型转换" data-url="http://yoursite.com/2017/01/11/bridged/" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="iOS的CF和OC中间的类型转换">
     <div class="ds-share-inline">
-      <ul  class="ds-share-icons-16">
+      <ul class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
         <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
         <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
