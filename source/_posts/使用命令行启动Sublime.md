@@ -1,7 +1,7 @@
 ---
 title: 使用命令行启动Sublime
 date: 2017-10-06 22:10:38
-tags: [日常]
+tags: [日常, Linux]
 ---
 
 
