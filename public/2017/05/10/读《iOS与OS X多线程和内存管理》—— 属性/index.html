@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>读《iOS与OS X多线程和内存管理》—— 属性 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言在ARC中是使用所有权修饰符来实现自动引用计数的，但是编程中我们几乎很少显式的写所有权修饰符，而是写属性关键字。">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读《iOS与OS X多线程和内存管理》—— 属性">
+<meta property="og:url" content="http://yoursite.com/2017/05/10/读《iOS与OS X多线程和内存管理》—— 属性/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言在ARC中是使用所有权修饰符来实现自动引用计数的，但是编程中我们几乎很少显式的写所有权修饰符，而是写属性关键字。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T16:03:52.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读《iOS与OS X多线程和内存管理》—— 属性">
+<meta name="twitter:description" content="前言在ARC中是使用所有权修饰符来实现自动引用计数的，但是编程中我们几乎很少显式的写所有权修饰符，而是写属性关键字。">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-读《iOS与OS X多线程和内存管理》—— 属性" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/10/读《iOS与OS X多线程和内存管理》—— 属性/" class="article-date">
+  	<time datetime="2017-05-10T11:26:12.000Z" itemprop="datePublished">2017-05-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读《iOS与OS X多线程和内存管理》—— 属性
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<code>ARC</code>中是使用所有权修饰符来实现自动引用计数的，但是编程中我们几乎很少显式的写所有权修饰符，而是写属性关键字。</p>
+<a id="more"></a>
+<h3 id="属性与所有权修饰符的对应关系"><a href="#属性与所有权修饰符的对应关系" class="headerlink" title="属性与所有权修饰符的对应关系"></a>属性与所有权修饰符的对应关系</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>所有权修饰符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assign</td>
+<td>__unsafe_unretained</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>__strong (赋值的是被复制对象)</td>
+</tr>
+<tr>
+<td>retain</td>
+<td>__strong</td>
+</tr>
+<tr>
+<td>strong</td>
+<td>__strong</td>
+</tr>
+<tr>
+<td>unsafe_unretained</td>
+<td>__unsafe_unretained</td>
+</tr>
+<tr>
+<td>weak</td>
+<td>__weak</td>
+</tr>
+</tbody>
+</table>
+<h3 id="strong-实现"><a href="#strong-实现" class="headerlink" title="__strong 实现"></a>__strong 实现</h3><figure class="highlight mm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="keyword">id</span> __<span class="keyword">strong</span> obj = [<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在编译时会转换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id obj = objc_msgSend(NSObject, @selector(alloc));</span><br><span class="line">objc_msgSend(obj, @selector(init));</span><br><span class="line">objc_release(obj);//变量作用域结束编译器自动插入了release</span><br></pre></td></tr></table></figure>
+<p>使用alloc/new/copy/mutableCopy以外的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __strong obj = [NSMutableArray array];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在编译时会转换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">id obj = objc_msgSend(NSMutableArray,@selector(array));</span><br><span class="line">/*</span><br><span class="line">array方法在编译时转换成了</span><br><span class="line">&#123;</span><br><span class="line">id obj = objc_msgSend(NSMutableArray, @selector(alloc));</span><br><span class="line">objc_msgSend(obj, @selector(init));</span><br><span class="line">return objc_autoreleaseReturnValue(obj);</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line">objc_retainAutoreleasedReturnValue(obj);</span><br><span class="line">objc_release(obj);//变量作用域结束编译器自动插入了release</span><br></pre></td></tr></table></figure>
+<p>objc_retainAutoreleasedReturnValue() 和 objc_autoreleaseReturnValue是成对出现的，用在alloc/new/copy/mutableCopy以外的类方法时</p>
+<p>objc_autoreleaseReturnValue函数和objc_autorelease函数不同，objc_autorelease函数会注册对象到autoreleasepool中<br>objc_autoreleaseReturnValue函数会检查使用该函数的方法或函数调用方的执行命令列表，<br>如果在后面紧接着调用objc_retainAutoreleaseReturnValue()函数，则将返回的对象直接传递到方法或函数的调用方，而不注册到autoreleasepool</p>
+<p>objc_retainAutoreleasedReturnValue函数和objc_retain函数不同，它即便不注册到autoreleasepool中而返回对象，也能够正确地获取对象<br>通过objc_autoreleaseReturnValue函数和objc_retainAutoreleasedReturnValue函数，可以不将对象注册到autoreleasepool中而直接传递</p>
+<h3 id="weak-实现"><a href="#weak-实现" class="headerlink" title="__weak 实现"></a>__weak 实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __weak obj1 = obj;//此处假设变量obj附加__strong修饰符且对象被赋值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在编译时会转换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">id obj1;</span><br><span class="line">objc_initWeak(&amp;obj1, obj);</span><br><span class="line">/*</span><br><span class="line">objc_initWeak函数在这里转换成</span><br><span class="line">obj1 = 0；</span><br><span class="line">objc_storeWeak(&amp;obj1, obj);</span><br><span class="line">*/</span><br><span class="line">objc_destroyWeak(&amp;obj1);</span><br><span class="line">/*</span><br><span class="line">objc_destroyWeak函数在这里相当于</span><br><span class="line">objc_storeWeak(&amp;obj1, 0);</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>objc_stroeWeak函数把第二个参数的赋值对象的地址作为键值，将第一个参数的附有<code>__weak</code>修饰符的变量的地址注册到weak表中，<br>如果第二个参数为0，则把变量的地址从weak表中删除</p>
+<p>weak表与引用计数表相同，都是作为散列表实现的。使用weak表，将废弃的对象的地址作为键值进行检索，就能高速地获取对应的附有<code>__weak</code>修饰符的变量的地址<br>由于一个对象可同时赋值给多个附有<code>__weak</code>修饰符的变量中，所以对于一个键值，可注册多个变量的地址</p>
+<p>对象释放时，程序的将进行下面几步：</p>
+<ol>
+<li>objc_release</li>
+<li>执行dealloc</li>
+<li>_objc_rootDealloc</li>
+<li>object_dispose</li>
+<li>objc_destructInstance</li>
+<li>objc_clear_deallocating</li>
+</ol>
+<p>objc_clear_deallocating函数做了下面几件事：</p>
+<ol>
+<li>从weak表中获取废弃对象的地址为键值的记录（获取所有的__weak修饰的变量的地址）</li>
+<li>将所有的__weak修饰的变量的地址，赋值为nil</li>
+<li>从weak表中删除该记录</li>
+<li>从引用计数表中删除废弃对象的地址为键值的记录</li>
+</ol>
+<p>经过以上步骤，<code>__weak</code>修饰符的变量所引用的对象被废弃，且将nil赋值给该变量。<br>由此可知，如果大量使用附有<code>__weak</code>修饰符的变量，则会销毁相应的CPU资源，因此只是在需要避免循环引用时使用<code>__weak</code>修饰符</p>
+<p>将自己生成并持有的对象赋值给<code>__weak</code>修饰符修饰的变量时，会引起编译器警告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __weak obj = [[NSObject alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在编译时转换成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id obj;</span><br><span class="line">id tmp = objc_msgSend(NSObject, @selector(alloc));</span><br><span class="line">objc_msgSend(tmp, @selector(init));</span><br><span class="line">objc_initWeak(&amp;obj, tmp);</span><br><span class="line">objc_release(tmp);</span><br><span class="line">objc_destroyWeak(&amp;object);</span><br></pre></td></tr></table></figure>
+<p>自己生成并持有的对象通过objc_initWeak函数被赋值给附有<code>__weak</code>修饰符的变量中，但变量无法持有，<br>故编译器判断其没有持有者，则该对象立即通过objc_release函数被释放和废弃，同时变量也被置nil</p>
+<p>使用附有<code>__weak</code>修饰符的变量，即是使用注册到autoreleasepool中的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __weak obj1 = obj;</span><br><span class="line">NSLog(@&quot;%@&quot;,obj1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以转化成如下形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id obj1;</span><br><span class="line">objc_initWeak(&amp;obj1, obj);</span><br><span class="line">id tmp = objc_loadWeakRetained(&amp;obj1);</span><br><span class="line">objc_autorelease(tmp);</span><br><span class="line">NSLog(@&quot;%@&quot; ,tmp);</span><br><span class="line">objc_destroyWeak(&amp;obj1);</span><br></pre></td></tr></table></figure>
+<p>和被赋值相比，此处增加了objc_loadWeakRetained函数和objc_autorelease函数</p>
+<ol>
+<li>objc_loadWeakRetained函数取出附有__weak 修饰符变量所引用的对象并retain。</li>
+<li>objc_autorelease函数将对象注册到autoreleasepool中。</li>
+</ol>
+<p>由此可知，<code>__weak</code>修饰符变量所引用的对象像这样被注册到autoreleasepool中，所以在@autoreleasepool 块结束之前都可以放心使用。<br>但是，如果大量地使用附有<code>__weak</code> 修饰符的变量，注册到autorpool的对象也会大量地增加，<br>因此，在使用附有<code>__weak</code>修饰符的变量时，最好先暂时赋值给附有<code>__strong</code>修饰符的变量后再使用</p>
+<p>eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __weak o = obj;</span><br><span class="line">NSLog(@&quot;1 %@&quot;, o);</span><br><span class="line">NSLog(@&quot;2 %@&quot;, o);</span><br><span class="line">NSLog(@&quot;3 %@&quot;, o);</span><br><span class="line">NSLog(@&quot;4 %@&quot;, o);</span><br><span class="line">NSLog(@&quot;5 %@&quot;, o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样o所赋值的对象注册到autoreleasepool中5次</p>
+<p>但使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __weak o = obj;</span><br><span class="line">id tmp = o;</span><br><span class="line">NSLog(@&quot;1 %@&quot;, tmp);</span><br><span class="line">NSLog(@&quot;2 %@&quot;, tmp);</span><br><span class="line">NSLog(@&quot;3 %@&quot;, tmp);</span><br><span class="line">NSLog(@&quot;4 %@&quot;, tmp);</span><br><span class="line">NSLog(@&quot;5 %@&quot;, tmp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只会在”tmp = o”时，对象会登录到autoreleasepool中1次</p>
+<p>在一些特定环境中是不能使用<code>__weak</code> 修饰符的，而且也存在着不支持<code>__weak</code>修饰符的类，这些类重写了retain/release<br>并实现该类独自的引用计数机制。因此独自实现引用计数机制的类大多数不支持<strong>weak修饰符。<br>不支持</strong>weak修饰符的类，其类声明中附加了<code>&quot;__attribute__((objc_arc_weak_reference_unavailable))&quot;</code>这一属性，<br>同时定义了<code>&quot;NS_AUTOMATED_REFCOUNT_WEAK_UNAVAILABLE&quot;</code>。如果将不支持<code>__weak</code>声明类的对象赋值给附有<code>__weak</code>修饰符的变量，<br>那么一旦编译器检验出来就会报告编译错误。而且Cocoa框架类中，不支持<code>__weak</code>修饰符的类极为罕见</p>
+<p>allowsWeakReference/retainWeakReference方法<br>当allowsWeakReference/retainWeakReference实例方法返回NO时，同样不能使用<code>__weak</code>修饰符</p>
+<p>在赋值给<code>__weak</code>修饰符的变量时，如果赋值对象的allowsWeakReference 方法返回NO,程序将异常终止</p>
+<p>在赋值给<code>__weak</code>修饰符的变量时，如果赋值对象的retainWeakReference 方法返回NO,该变量将使用nil</p>
+<p>eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __strong obj = [[NSObject alloc] init];</span><br><span class="line">id __weak o = obj;</span><br><span class="line">NSLog(@&quot;1 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;2 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;3 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;4 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;5 %@&quot;,o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果所有的NSLog都可以打印出地址</p>
+<p>如果自定义一个MyObject继承自NSObject的类，并实现retainWeakReference方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)retainWeakReference &#123;</span><br><span class="line">  if (++count &gt; 3)</span><br><span class="line">    return NO;</span><br><span class="line">  return [super retainWeakReference];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用MyObject类生成并持有对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">id __strong obj = [[MyObject alloc] init];</span><br><span class="line">id __weak o = obj;</span><br><span class="line">NSLog(@&quot;1 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;2 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;3 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;4 %@&quot;,o);</span><br><span class="line">NSLog(@&quot;5 %@&quot;,o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果4和5的NSLog打印的为nil</p>
+<h3 id="autoreleasing-实现"><a href="#autoreleasing-实现" class="headerlink" title="__autoreleasing 实现"></a>__autoreleasing 实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123;</span><br><span class="line">    id __autoreleaseing obj = [[NSObject alloc] init];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在编译的时候转换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id pool = objc_autoreleasePoolPush();</span><br><span class="line">id obj = objc_msgSend(NSObject, @selector(alloc));</span><br><span class="line">objc_msgSend(obj, @selector(init));</span><br><span class="line">objc_autorelease(obj);</span><br><span class="line">objc_autoreleasePoolPop(pool);</span><br></pre></td></tr></table></figure>
+<p>在alloc/new/copy/mutableCopy方法群之外的方法使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123;</span><br><span class="line">  id __autoreleasing obj = [NSMutableArray array];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在编译时转换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id pool = objc_autoreleasePoolPush();</span><br><span class="line">id obj = objc_msgSend(NSMutableArray, @selector(array));</span><br><span class="line">objc_retainAutoreleasedReturnValue(obj);</span><br><span class="line">objc_autorelease(obj);</span><br><span class="line">objc_autoreleasePoolPop(pool);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/14/读《iOS与OS X多线程和内存管理》—— GCD/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          读《iOS与OS X多线程和内存管理》—— GCD
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/05/读《iOS与OS X多线程和内存管理》—— ARC规则/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">读《iOS与OS X多线程和内存管理》—— ARC规则</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

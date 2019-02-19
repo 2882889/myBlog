@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>MAC下安装Python3 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言MAC os本身是自带Python的,但是不是Python3，这里记录一下安装Python3的步骤">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAC下安装Python3">
+<meta property="og:url" content="http://yoursite.com/2018/03/24/MAC下安装Python3/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言MAC os本身是自带Python的,但是不是Python3，这里记录一下安装Python3的步骤">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T16:28:10.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MAC下安装Python3">
+<meta name="twitter:description" content="前言MAC os本身是自带Python的,但是不是Python3，这里记录一下安装Python3的步骤">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-MAC下安装Python3" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/24/MAC下安装Python3/" class="article-date">
+  	<time datetime="2018-03-24T14:32:17.000Z" itemprop="datePublished">2018-03-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MAC下安装Python3
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>MAC os</code>本身是自带<code>Python</code>的,但是不是<code>Python3</code>，这里记录一下安装<code>Python3</code>的步骤</p>
+<a id="more"></a>
+<h3 id="1、安装Xcode"><a href="#1、安装Xcode" class="headerlink" title="1、安装Xcode"></a>1、安装Xcode</h3><p>步骤：</p>
+<p>1）、打开App Store 搜索<code>Xcode</code>,点击安装，安装完成后打开</p>
+<p>如果是第一次打开<code>Xcode</code>需要同意<code>License Agreement</code></p>
+<p>2）、然后安装<code>Xcode command line tool</code></p>
+<p>在终端输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+<p>在弹出的窗口中点击<code>安装</code>等待完成</p>
+<h3 id="2、安装HOMEBREW"><a href="#2、安装HOMEBREW" class="headerlink" title="2、安装HOMEBREW"></a>2、安装HOMEBREW</h3><p>HomeBrew的介绍和安装方法可以在其官网找到 <a href="https://brew.sh/index_zh-cn" target="_blank" rel="noopener">HomeBrew官网</a></p>
+<p>1）、在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>等待<code>HomeBrew</code>安装完成</p>
+<p>2）、验证安装结果，在终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew doctor</span><br></pre></td></tr></table></figure>
+<p>如果显示<code>Your system is ready to brew.</code> 代表<code>Homebrew</code>安装成功</p>
+<h3 id="3、安装Python"><a href="#3、安装Python" class="headerlink" title="3、安装Python"></a>3、安装Python</h3><p>如前言所说其实<code>MAC os</code>是自带一个Python的,我们可以使用下面命令查看Python版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+<p>首先安装Python 终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install python</span><br></pre></td></tr></table></figure>
+<p>完成后Python3就会被安装到<code>/usr/local/Cellar</code>目录下</p>
+<p>输入<code>which python3</code>查看python3的命令路径</p>
+<h3 id="4、修改系统路径"><a href="#4、修改系统路径" class="headerlink" title="4、修改系统路径"></a>4、修改系统路径</h3><p>首先查看系统路径，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+<p>显示出来的路径就是系统搜索命令的路径</p>
+<p>如果里面没有Python3的路径，就需要我们手动添加一下</p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo emacs /etc/paths</span><br></pre></td></tr></table></figure>
+<p>把Python3的路径添加进去</p>
+<p>然后按：ctrl+x+c 回复y保存退出</p>
+<h3 id="5、注意"><a href="#5、注意" class="headerlink" title="5、注意"></a>5、注意</h3><p>TensorFlow在Python3.7下目前不支持，而brew的新版本又不支持指定版本Python安装，所以最简单的解决办法是从<a href="https://www.python.org/downloads/mac-osx/" target="_blank" rel="noopener">Python官网</a>下载3.6版本的pkg安装，pkg安装的路径是<code>/Library/Frameworks/Python.framework/</code></p>
+<p>移除brew安装的Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#移除所有版本Python</span><br><span class="line">brew uninstall --force python</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/11/linux修改权限/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Linux权限问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/16/Mac下打造属于你自己的终端/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac下打造属于你自己的终端</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

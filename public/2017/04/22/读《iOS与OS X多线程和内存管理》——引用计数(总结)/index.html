@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>读《iOS与OS X多线程和内存管理》——引用计数(总结) | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言上一篇文章介绍了引用计数，用GNUstep的实现，推测了cocoa框架的实现，现在总结一下个人觉得重要的地方，和上一篇没说的地方">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读《iOS与OS X多线程和内存管理》——引用计数(总结)">
+<meta property="og:url" content="http://yoursite.com/2017/04/22/读《iOS与OS X多线程和内存管理》——引用计数(总结)/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言上一篇文章介绍了引用计数，用GNUstep的实现，推测了cocoa框架的实现，现在总结一下个人觉得重要的地方，和上一篇没说的地方">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T16:01:47.279Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读《iOS与OS X多线程和内存管理》——引用计数(总结)">
+<meta name="twitter:description" content="前言上一篇文章介绍了引用计数，用GNUstep的实现，推测了cocoa框架的实现，现在总结一下个人觉得重要的地方，和上一篇没说的地方">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-读《iOS与OS X多线程和内存管理》——引用计数(总结)" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/22/读《iOS与OS X多线程和内存管理》——引用计数(总结)/" class="article-date">
+  	<time datetime="2017-04-22T14:05:43.000Z" itemprop="datePublished">2017-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读《iOS与OS X多线程和内存管理》——引用计数(总结)
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇文章介绍了引用计数，用<code>GNUstep</code>的实现，推测了<code>cocoa</code>框架的实现，现在总结一下个人觉得重要的地方，和上一篇没说的地方</p>
+<a id="more"></a>
+<h3 id="非自己生成的对象，自己也能持有"><a href="#非自己生成的对象，自己也能持有" class="headerlink" title="非自己生成的对象，自己也能持有"></a>非自己生成的对象，自己也能持有</h3><p>这一条内存管理举的例子是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id obj = [NSArray array];</span><br><span class="line">[obj retain];</span><br></pre></td></tr></table></figure>
+<p>开始不是很明白，这里的工厂方法，和普通的初始化有什么区别，个人当时认为的是这也应该算做是<code>自己生成的对象，自己所持有</code></p>
+<p>但是后面说了，<code>[NSArray array]</code>的时候，其实他面会把生成的临时对象<code>[tempObj autorelease]</code>,那么反回的时候，就需要<code>[obj retain]</code>,因为之前说了，这个地方的内容还没涉及到<code>ARC</code>，所以需要<code>retain</code>一下</p>
+<h3 id="NSAutoreleasePool"><a href="#NSAutoreleasePool" class="headerlink" title="NSAutoreleasePool"></a>NSAutoreleasePool</h3><p>这个东西，说的简单点，就是一个块，让在他里面的东西，都保持状态，不释放，但是出了他的作用域，就全部释放一遍</p>
+<p>继续用开关灯那个例子的话，<code>NSAutoreleasePool</code>就相当于一个屋子里面多了一个管理员，对象在<code>NSAutoreleasePool</code>中，就好比管理员在屋子中，所以屋子会一直亮着，而且，管理员肯定是第一个进来，最后一个走，这就保证了，屋子的灯可以由管理员控制，也就是对象的释放时机，是出了<code>NSAutoreleasePool</code>的时候</p>
+<p>在<code>ARC</code>中，<code>NSAutoreleasePool</code>是不只直接使用的，你可以使用下面这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool&#123;</span><br><span class="line"></span><br><span class="line">// Code benefitting from a local autorelease pool.</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在自动释放池中，一个对象如果被<code>autorelease</code>了多次，那么在池子释放的时候，对象会被执行多次<code>release</code></p>
+<p>在运行时系统中调用方法</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 函数声明 */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">void</span> _objc_autoreleasePoolPrint();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 调试处调用 */</span></span><br><span class="line">_objc_autoreleasePoolPrint();</span><br></pre></td></tr></table></figure>
+<p>这个方法在<code>ARC</code>中的调试中可以使用，可以打印出，当前缓冲池中的所有对象，还是比较有用的。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/26/读《iOS与OS X多线程和内存管理》—— 自动引用计数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          读《iOS与OS X多线程和内存管理》—— 自动引用计数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/17/读《iOS与OS X多线程和内存管理》——引用计数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">读《iOS与OS X多线程和内存管理》——引用计数</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

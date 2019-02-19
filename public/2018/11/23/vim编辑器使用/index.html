@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>vim 编辑器使用 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言最近突然觉得使用vim在终端查看文本特别高大上，就打算研究一下，但是感觉学习成本太大，效率不高，就简单记录一下，方便以后有需要查询">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim 编辑器使用">
+<meta property="og:url" content="http://yoursite.com/2018/11/23/vim编辑器使用/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言最近突然觉得使用vim在终端查看文本特别高大上，就打算研究一下，但是感觉学习成本太大，效率不高，就简单记录一下，方便以后有需要查询">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T16:55:02.319Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim 编辑器使用">
+<meta name="twitter:description" content="前言最近突然觉得使用vim在终端查看文本特别高大上，就打算研究一下，但是感觉学习成本太大，效率不高，就简单记录一下，方便以后有需要查询">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-vim编辑器使用" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/11/23/vim编辑器使用/" class="article-date">
+  	<time datetime="2018-11-23T15:32:12.000Z" itemprop="datePublished">2018-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vim 编辑器使用
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近突然觉得使用<code>vim</code>在终端查看文本特别高大上，就打算研究一下，但是感觉学习成本太大，效率不高，就简单记录一下，方便以后有需要查询</p>
+<a id="more"></a>
+<h3 id="vim-命令"><a href="#vim-命令" class="headerlink" title="vim 命令"></a>vim 命令</h3><p>打开文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim 文件名</span><br></pre></td></tr></table></figure>
+<p>如果没有会新建一个文件</p>
+<p>非正常关闭会有<code>.swp</code>的缓存文件</p>
+<p>默认打开是命令模式,要想输入要进入</p>
+<h4 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h4><p> <code>yy</code>复制光标所在行</p>
+<p> <code>4yy</code>复制光标所在行及下面三行</p>
+<p> <code>dd</code>剪切(如果不粘贴就是删除)光标所在行</p>
+<p> <code>4dd</code>剪切(如果不粘贴就是删除)光标所在行及下面三行</p>
+<p> <code>p</code>粘贴到光标的下面一行</p>
+<p> <code>h</code>左移光标</p>
+<p> <code>j</code>下移光标</p>
+<p> <code>k</code>上移光标</p>
+<p> <code>l</code>右移光标</p>
+<p> <code>H</code>移动光标到当前屏幕上方</p>
+<p> <code>M</code>移动光标到当前屏幕中间</p>
+<p> <code>L</code>移动光标到当前屏幕下方</p>
+<p> <code>ctrl+f</code>下翻一页</p>
+<p> <code>ctrl+b</code>上翻一页</p>
+<p> <code>ctrl+d</code>下翻半页</p>
+<p> <code>ctrl+u</code>上翻半页</p>
+<p> <code>20G</code>光标移动到20行</p>
+<p> <code>G</code>光标移动到最后一行</p>
+<p> <code>gg</code>光标移动到第一行</p>
+<p> <code>w</code>向后跳一个单词的长度,下一个单词的开始</p>
+<p> <code>b</code>向前跳一个单词的长度,上一个单词的开始</p>
+<p> <code>D</code>删除当前行光标以及后面的内容</p>
+<p> <code>u</code>撤销刚刚的操作</p>
+<p> <code>ctrl+r</code>反撤销</p>
+<p><code>d0</code>删除当前行光标之前的内容</p>
+<p><code>x</code>删除当前光标的一个内容</p>
+<p><code>X</code>删除当前光标前面的一个内容</p>
+<p><code>v + 移动光标</code> 选中块内容(字母选)</p>
+<p><code>V + 移动光标</code> 选中块内容(正行选)</p>
+<p><code>&gt;</code>右缩进</p>
+<p><code>&lt;</code>左缩进</p>
+<p><code>.</code>重复上一个命令</p>
+<p><code>r</code> 替换光标内容</p>
+<p><code>R</code> 替换光标以及后面的内容</p>
+<p><code>/+内容</code>搜索内容, (n上一个搜索内容,N下一个搜索内容)</p>
+<h4 id="编辑模式"><a href="#编辑模式" class="headerlink" title="编辑模式"></a>编辑模式</h4><p>命令模式输入<code>i</code>从光标的前面开始编辑</p>
+<p>命令模式输入<code>a</code>从光标的后面开始编辑</p>
+<p>命令模式输入<code>o</code>从光标下面新起一行编辑</p>
+<p>命令模式输入<code>O</code>从光标上面新起一行编辑</p>
+<p>命令模式输入<code>I</code>从光标行首开始编辑</p>
+<p>命令模式输入<code>A</code>从光标行末开始编辑</p>
+<p>按<code>esc</code>退出编辑模式</p>
+<h4 id="末行模式"><a href="#末行模式" class="headerlink" title="末行模式"></a>末行模式</h4><p>末行模式  (命令模式输入<code>:</code>)</p>
+<p><code>w</code>保存</p>
+<p><code>q</code>退出</p>
+<p><code>q!</code>强制退出</p>
+<p><code>shift+vv</code>相当于wq</p>
+<p><code>%s/abc/123/g</code>把所有的abc替换成123</p>
+<p><code>1,10s/abc/123/g</code>把1到10行的abc替换成123</p>
+<p>按<code>esc</code>退出编辑模式</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/20/UITableViewCell的创建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UITableViewCell的创建</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>读《iOS与OS X多线程和内存管理》—— 自动引用计数 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言下面是自动引用计数部分书中内容的笔记">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读《iOS与OS X多线程和内存管理》—— 自动引用计数">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/读《iOS与OS X多线程和内存管理》—— 自动引用计数/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言下面是自动引用计数部分书中内容的笔记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-02T16:02:29.483Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读《iOS与OS X多线程和内存管理》—— 自动引用计数">
+<meta name="twitter:description" content="前言下面是自动引用计数部分书中内容的笔记">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-读《iOS与OS X多线程和内存管理》—— 自动引用计数" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/26/读《iOS与OS X多线程和内存管理》—— 自动引用计数/" class="article-date">
+  	<time datetime="2017-04-26T15:32:33.000Z" itemprop="datePublished">2017-04-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读《iOS与OS X多线程和内存管理》—— 自动引用计数
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>下面是自动引用计数部分书中内容的笔记</p>
+<a id="more"></a>
+<h3 id="自动引用计数设置"><a href="#自动引用计数设置" class="headerlink" title="自动引用计数设置"></a>自动引用计数设置</h3><p>前面说到过，自动引用计数（Automatic Reference Counting）简称就是我们现在使用的<code>ARC</code>了，顾名思义自动引用计数就是编译器自动帮我们处理引用计数</p>
+<p>在编译的时候，我们可以指定每个文件是否使用<code>ARC</code>，Xcode4.2以后编译器默认为<code>ARC</code>有效。</p>
+<p>在创建完工程的时候，我们可以在工程的配置文件中设置工程模式是<code>MRC</code>还是<code>ARC</code>，设置的方法是：</p>
+<p>在工程配置文件的，<code>Build Settings</code>中，找到<code>Objective-C Automatic Reference Counting</code> 选项，设置为<code>YES</code>,就是<code>ARC</code>工程模式，设置为<code>NO</code>就是<code>MRC</code>工程模式。</p>
+<p>在<code>ARC</code>工程模式或<code>MRC</code>工程模式也可以设置部分文件编译模式与之相反，设置方法：</p>
+<p>在<code>Build pyases</code>中的<code>compile source</code>找到对应的文件设置参数<code>-fno-objc-arc</code>为<code>MRC</code>模式，反之<code>-fobjc-arc</code>为<code>ARC</code>模式。</p>
+<h3 id="所有权修饰符"><a href="#所有权修饰符" class="headerlink" title="所有权修饰符"></a>所有权修饰符</h3><p>在引用计数中，我们知道，对象的销毁，是通过引用计数的值来判断的，但是引用计数的值是需要我们手动去维护的，那么要想让编译器去维护引用计数，我们就要通过一些修饰符，去告诉编译器，变量什么时候需要引用计数加一，什么时候引用计数需要减一，那么这个修饰符就是所有权修饰符</p>
+<p>在<code>ARC</code>模式下，所有权修饰符有四种：</p>
+<ul>
+<li>__strong</li>
+<li>__weak</li>
+<li>__unsafe_unretained</li>
+<li>__autoreleasing</li>
+</ul>
+<h4 id="strong"><a href="#strong" class="headerlink" title="__strong"></a>__strong</h4><p><code>__strong</code>修饰符是id类型和对象类型的默认所有权修饰符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id obj = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id __strong obj = [[NSObject alloc] init];</span><br></pre></td></tr></table></figure>
+<p>这两种表示方法的结果是一样的</p>
+<p>在<code>ARC</code>中，被<code>__strong</code>修饰符修饰的变量，表示对对象的强引用，持有强引用的变量在超出其作用域时被废弃，随着强引用的失效，引用的对象会随之释放</p>
+<p>在变量赋值的时候，也会对对象强引用，如果赋值为<code>nil</code>,则强引用失效</p>
+<p><code>__strong</code>也可以修饰在方法参数上，虽然平常我们写的方法上都没有，那是因为默认是不用写的</p>
+<h4 id="weak"><a href="#weak" class="headerlink" title="__weak"></a>__weak</h4><p><code>__weak</code>修饰符，提供弱引用，弱引用不能持有对象实例。<code>__weak</code>修饰符是为了解决<code>__strong</code>修饰符会产生循环引用出现的。 所谓循环引用，就是自己引用自己，或者多个对象相互引用，导致谁都无法释放的问题</p>
+<p><code>__weak</code>修饰符，的另一个作用是，在持有某对象的弱引用时，若该对象被废弃，则此弱引用将自动失效且处于<code>nil</code>被赋值的状态（空弱引用）。</p>
+<p>所以，检查<code>__weak</code>修饰符的变量是否为空，可以判断被赋值的对象是否已废弃</p>
+<h4 id="unsafe-unretained"><a href="#unsafe-unretained" class="headerlink" title="__unsafe_unretained"></a>__unsafe_unretained</h4><p><code>__unsafe_unretained</code>修饰符，是不安全的所有权修饰符，被他修饰的变量，是不属于编译器的内存管理对象。</p>
+<p><code>__unsafe_unretained</code>修饰符，和<code>__weak</code>修饰符的作用相似，他也无法持有对象实例，但是他在对象已经释放的时候，仍然指向对象，形成垂悬指针。</p>
+<p>所以，在使用<code>__unsafe_unretained</code>修饰符的变量的时候，必须确保被赋值的对象确实存在，不然会导致程序崩溃</p>
+<h4 id="autoreleasing"><a href="#autoreleasing" class="headerlink" title="__autoreleasing"></a>__autoreleasing</h4><p>在<code>MRC</code>的时候，<code>NSAutoreleasePool</code>类中的要想让对象自动释放，有个<code>autorelease</code>方法，但是在<code>ARC</code>中，<code>NSAutoreleasePool</code>已经改用<code>@autoreleasepool</code>了，所以，需要<code>__autoreleasing</code>修饰符，来表示对象自动释放。</p>
+<p><code>__autoreleasing</code>和<code>__strong</code>修饰符都不需要显示的添加，因为在使用<code>alloc/new/copy/mutableCopy</code>以外的方法取来的对象，已经被注册到<code>autoreleasepool</code>中了。</p>
+<p>在<code>__weak</code>修饰符修饰的变量在访问对象的时候，也会把对象注册到<code>autoreleasepool</code>中</p>
+<p>id的指针或者对象的指针在没有显式指定是，也会被加上<code>__autoreleasing</code>修饰符</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/05/读《iOS与OS X多线程和内存管理》—— ARC规则/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          读《iOS与OS X多线程和内存管理》—— ARC规则
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/22/读《iOS与OS X多线程和内存管理》——引用计数(总结)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">读《iOS与OS X多线程和内存管理》——引用计数(总结)</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
