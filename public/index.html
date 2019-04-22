@@ -113,7 +113,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+						<a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
 					</div>
 				</section>
 				
@@ -175,6 +175,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-MAC使用密钥登录VPS" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/02/12/MAC使用密钥登录VPS/" class="article-date">
+  	<time datetime="2019-02-12T13:30:12.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/MAC使用密钥登录VPS/">
+        MAC使用密钥登录VPS
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天登录<code>VPS</code>,突然提示如下信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Last failed login: Tue Feb 12 07:55:56 EST 2019 from 218.92.1.143 on ssh:notty</span><br><span class="line">There were 49 failed login attempts since the last successful login.</span><br></pre></td></tr></table></figure>
+<p>貌似被别人跑猴子了，所以我就关了密码登录</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/02/12/MAC使用密钥登录VPS/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-vim编辑器使用" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -224,6 +288,79 @@
         <p class="article-more-link">
           <a href="/2018/11/23/vim编辑器使用/#more">more >></a>
         </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Flutter的安装" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/11/10/Flutter的安装/" class="article-date">
+  	<time datetime="2018-11-10T11:26:12.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/10/Flutter的安装/">
+        Flutter的安装
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>记录一下安装<code>flutter</code>的过程，方便以后查询</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>下载<code>flutter</code>:</p>
+<p>终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b beta https://github.com/flutter/flutter.git</span><br></pre></td></tr></table></figure>
+<p>添加临时环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=`pwd`/flutter/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>注意：<br><code>pwd</code>表示当前路径，后面的<code>flutter</code>就是你git下来的文件夹，里面会有一个<code>bin</code>文件夹，这里如果git下来的文件夹不叫<code>flutter</code>，需要改上面的命令为对应的文件名称，而且要和<code>pwd</code>打印出来的路径能连接上</p>
+<p>检查依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter doctor</span><br></pre></td></tr></table></figure>
+<p>这一步可能需要翻墙，解决办法是<a href="https://flutter.io/community/china" target="_blank" rel="noopener">添加这两个镜像</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</span><br><span class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</span><br></pre></td></tr></table></figure>
+<p>如果<code>flutter doctor</code>跑出什么问题，按照提示解决就好</p>
+<p>如果是如下错误，需要在<code>android studio</code>中添加插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    ✗ Flutter plugin not installed; this adds Flutter specific functionality.</span><br><span class="line">    ✗ Dart plugin not installed; this adds Dart specific functionality.</span><br><span class="line">[!] Connected device</span><br><span class="line">    ! No devices available</span><br></pre></td></tr></table></figure>
+<p>如果需要安装<code>dart</code>点同意就好，如果没有其他错误，就表示<code>flutter</code>安装成功</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/">Flutter</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
       
     
   </div>
@@ -671,134 +808,9 @@
 
 
   
-    <article id="post-Mac下打造属于你自己的终端" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/03/16/Mac下打造属于你自己的终端/" class="article-date">
-  	<time datetime="2018-03-16T14:46:17.000Z" itemprop="datePublished">2018-03-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/16/Mac下打造属于你自己的终端/">
-        Mac下打造属于你自己的终端
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="item2的自定义样式"><a href="#item2的自定义样式" class="headerlink" title="item2的自定义样式"></a>item2的自定义样式</h2><p>让你的终端用上主题</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2018/03/16/Mac下打造属于你自己的终端/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-hexo部署报错解决" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/12/06/hexo部署报错解决/" class="article-date">
-  	<time datetime="2017-12-06T15:21:15.000Z" itemprop="datePublished">2017-12-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/06/hexo部署报错解决/">
-        hexo部署报错解决
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于换了一个电脑搭建<code>hexo</code>,在部署的时候报错了，这里记录一下解决办法：</p>
-<p>删除<code>.deploy_git</code></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2017/12/06/hexo部署报错解决/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

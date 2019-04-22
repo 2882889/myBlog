@@ -148,6 +148,21 @@ crontab -e  //打开定时任务配置
 service crond start
 ```
 
+5.mac终端使用ss
+
+在终端中输入如下命令：
+
+```
+export http_proxy=socks5://127.0.0.1:1080 # 配置http 代理访问
+export https_proxy=socks5://127.0.0.1:1080 # 配置https 代理访问
+export all_proxy=socks5://127.0.0.1:1080 # 配置http和https访问
+unset http_proxy  # 取消http 代理访问
+unset https_proxy # 取消https 代理访问
+```
+
+这样设置只能在当前启动的终端中有效，如果需要每次都走代理，则需要在`shell`文件中添加上述设置。
+
+上面命令中的端口号和地址，需要和`shadowsock`中`socks5`监听的地址和端口号一致
 
 
 ## 安装使用Apache ##
