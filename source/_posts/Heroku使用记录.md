@@ -58,6 +58,34 @@ heroku -v
 heroku login
 ```
 
+问题一：
+
+今天再另外一台电脑上登录时报错了，报错信息如下：
+
+```
+~ ❯ heroku login
+heroku: Press any key to open up the browser to login or q to exit:
+Error: getaddrinfo ENOTFOUND cli-auth.heroku.com cli-auth.heroku.com:443
+```
+
+原因是，DNS解析问题，解决办法就是换一个DNS
+
+问题二：
+
+跳转浏览器登录提示失败，报错信息如下：
+
+```
+~ ❯ heroku login                                                              ⏎
+heroku: Press any key to open up the browser to login or q to exit:
+Opening browser to https://cli-auth.heroku.com/auth/browser/xxxxx
+heroku: Waiting for login... !
+SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at HTTP._parse (/usr/local/lib/heroku/node_modules/http-call/lib/http.js:342:30)
+```
+
+解决办法使用如下命令登录：`heroku login --interactive`
+
 #### 创建程序 ####
 
 ```
@@ -86,4 +114,24 @@ git push -u origin master
 ```
 
 推送完成后，就可以访问上面的地址，查看代码是否部署成功
+
+#### 查看运行日志 ####
+
+```
+heroku logs --tail
+```
+
+最好在app目录，否则需要添加app名参数
+
+
+
+### 其他 ###
+
+#### node.js 监听端口方法 ####
+
+```
+.listen(process.env.PORT || 5000)
+```
+
+
 
