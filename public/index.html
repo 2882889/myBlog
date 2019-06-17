@@ -175,6 +175,95 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Heroku使用记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/17/Heroku使用记录/" class="article-date">
+  	<time datetime="2019-03-17T03:02:30.000Z" itemprop="datePublished">2019-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/17/Heroku使用记录/">
+        Heroku使用记录
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Heroku</code>是一个免费的云服务，据说还可以跑<code>VPN</code>,但是这不是我这次研究的问题，这次想把<code>listen1-api</code>,构建出来的<code>js</code>代码部署到上面，当做接口使用</p>
+<h3 id="一-、注册"><a href="#一-、注册" class="headerlink" title="一 、注册"></a>一 、注册</h3><p>官网地址 ： <a href="https://www.heroku.com/" target="_blank" rel="noopener">https://www.heroku.com/</a></p>
+<p>注册没有难度，使用国外邮箱，能翻墙就OK</p>
+<h3 id="二、安装工具"><a href="#二、安装工具" class="headerlink" title="二、安装工具"></a>二、安装工具</h3><p>这个工具就是一个能在终端部署的工具<code>heroku-cli</code></p>
+<p>工具地址： <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank" rel="noopener">https://devcenter.heroku.com/articles/heroku-cli</a></p>
+<p>这个工具和<code>hexo</code>是一个意思，但是有一个坑的地方就是，你的终端也要可以FQ,不然登录不上去</p>
+<p>终端FQ方法以前记录过，这里在贴一下，方便使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=socks5://127.0.0.1:1080 # 配置http 代理访问</span><br><span class="line">export https_proxy=socks5://127.0.0.1:1080 # 配置https 代理访问</span><br><span class="line">export all_proxy=socks5://127.0.0.1:1080 # 配置http和https访问</span><br><span class="line">unset http_proxy  # 取消http 代理访问</span><br><span class="line">unset https_proxy # 取消https 代理访问</span><br></pre></td></tr></table></figure>
+<p>上面命令中的端口号和地址，需要和<code>shadowsock</code>中<code>socks5</code>监听的地址和端口号一致,而且这个只是临时使用，要想长期使用，需要加入到<code>shell</code>中</p>
+<p>卸载命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/local/heroku /usr/local/lib/heroku /usr/local/bin/heroku ~/.local/share/heroku ~/Library/Caches/heroku</span><br></pre></td></tr></table></figure>
+<h3 id="三-、使用"><a href="#三-、使用" class="headerlink" title="三 、使用"></a>三 、使用</h3><h4 id="查看工具版本"><a href="#查看工具版本" class="headerlink" title="查看工具版本"></a>查看工具版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku -v</span><br></pre></td></tr></table></figure>
+<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure>
+<p>问题一：</p>
+<p>今天再另外一台电脑上登录时报错了，报错信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ ❯ heroku login</span><br><span class="line">heroku: Press any key to open up the browser to login or q to exit:</span><br><span class="line">Error: getaddrinfo ENOTFOUND cli-auth.heroku.com cli-auth.heroku.com:443</span><br></pre></td></tr></table></figure>
+<p>原因是，DNS解析问题，解决办法就是换一个DNS</p>
+<p>问题二：</p>
+<p>跳转浏览器登录提示失败，报错信息如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">~ ❯ heroku login                                                              ⏎</span><br><span class="line">heroku: Press any key to open up the browser to login or q to exit:</span><br><span class="line">Opening browser to https://cli-auth.heroku.com/auth/browser/xxxxx</span><br><span class="line">heroku: Waiting for login... !</span><br><span class="line">SyntaxError: Unexpected end of JSON input</span><br><span class="line">    at JSON.parse (&lt;anonymous&gt;)</span><br><span class="line">    at HTTP._parse (/usr/local/lib/heroku/node_modules/http-call/lib/http.js:342:30)</span><br></pre></td></tr></table></figure>
+<p>解决办法使用如下命令登录：<code>heroku login --interactive</code></p>
+<h4 id="创建程序"><a href="#创建程序" class="headerlink" title="创建程序"></a>创建程序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku create app-name</span><br></pre></td></tr></table></figure>
+<p>创建完成会有两个地址，一个是访问的网址，一个是代码仓库的地址</p>
+<p>我的测试的地址是如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://nodetestdemo.herokuapp.com/ | https://git.heroku.com/nodetestdemo.git</span><br></pre></td></tr></table></figure>
+<h4 id="推送代码"><a href="#推送代码" class="headerlink" title="推送代码"></a>推送代码</h4><p>使用<code>git</code>把代码推送的上面生成的仓库中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;commit&quot;</span><br><span class="line">git remote add origin https://git.heroku.com/app-name.git</span><br><span class="line">git remote -v</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>推送完成后，就可以访问上面的地址，查看代码是否部署成功</p>
+<h4 id="查看运行日志"><a href="#查看运行日志" class="headerlink" title="查看运行日志"></a>查看运行日志</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku logs --tail</span><br></pre></td></tr></table></figure>
+<p>最好在app目录，否则需要添加app名参数</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="node-js-监听端口方法"><a href="#node-js-监听端口方法" class="headerlink" title="node.js 监听端口方法"></a>node.js 监听端口方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.listen(process.env.PORT || 5000)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-MAC使用密钥登录VPS" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -732,68 +821,6 @@
       
         <p class="article-more-link">
           <a href="/2018/04/11/linux修改权限/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-MAC下安装Python3" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/03/24/MAC下安装Python3/" class="article-date">
-  	<time datetime="2018-03-24T14:32:17.000Z" itemprop="datePublished">2018-03-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/24/MAC下安装Python3/">
-        MAC下安装Python3
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>MAC os</code>本身是自带<code>Python</code>的,但是不是<code>Python3</code>，这里记录一下安装<code>Python3</code>的步骤</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2018/03/24/MAC下安装Python3/#more">more >></a>
         </p>
       
     

@@ -165,6 +165,36 @@ unset https_proxy # 取消https 代理访问
 上面命令中的端口号和地址，需要和`shadowsock`中`socks5`监听的地址和端口号一致
 
 
+## 神技 ##
+安装`bbr`在`openVZ`
+
+```
+wget --no-check-certificate https://raw.githubusercontent.com/kuoruan/shell-scripts/master/ovz-bbr/ovz-bbr-installer.sh
+chmod +x ovz-bbr-installer.sh
+./ovz-bbr-installer.sh
+```
+
+卸载
+
+```
+./ovz-bbr-installer.sh uninstall
+```
+
+多端口
+
+```
+vim /usr/local/haproxy-lkl/etc/port-rules
+```
+
+启动|停止|重启
+
+```
+systemctl {start|stop|restart} haproxy-lkl
+
+service haproxy-lkl {start|stop|restart}
+```
+
+
 ## 安装使用Apache ##
 
 在Linux中Apache的名字叫`httpd`
