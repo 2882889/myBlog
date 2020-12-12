@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Linux系统使用--斐讯T1安装Armbian | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言之前买过一个斐讯T1，用来当电视盒子配置还是够的，但是我没有看电视的需求，后来发现可以安装Linux，于是拿来尝试了一下，增加它的可玩性">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux系统使用--斐讯T1安装Armbian">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/Linux系统使用--斐讯T1安装Armbian/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言之前买过一个斐讯T1，用来当电视盒子配置还是够的，但是我没有看电视的需求，后来发现可以安装Linux，于是拿来尝试了一下，增加它的可玩性">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-04T13:15:55.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux系统使用--斐讯T1安装Armbian">
+<meta name="twitter:description" content="前言之前买过一个斐讯T1，用来当电视盒子配置还是够的，但是我没有看电视的需求，后来发现可以安装Linux，于是拿来尝试了一下，增加它的可玩性">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac软件/" style="font-size: 12.5px;">Mac软件</a> <a href="/tags/OMV/" style="font-size: 10px;">OMV</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/armbian/" style="font-size: 10px;">armbian</a> <a href="/tags/iOS/" style="font-size: 17.5px;">iOS</a> <a href="/tags/我家云/" style="font-size: 10px;">我家云</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a> <a href="/tags/黑苹果/" style="font-size: 12.5px;">黑苹果</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Linux系统使用--斐讯T1安装Armbian" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/14/Linux系统使用--斐讯T1安装Armbian/" class="article-date">
+  	<time datetime="2018-06-14T03:10:12.000Z" itemprop="datePublished">2018-06-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux系统使用--斐讯T1安装Armbian
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前买过一个斐讯T1，用来当电视盒子配置还是够的，但是我没有看电视的需求，后来发现可以安装<code>Linux</code>，于是拿来尝试了一下，增加它的可玩性</p>
+<a id="more"></a>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>U盘一个</li>
+<li>斐讯T1</li>
+<li>电脑</li>
+</ul>
+<p>注意：我在安装的时候使用的使用的一个U盘怎么也无法启动到<code>Linux</code>，看网上说是对U盘有要求，解决办法就是换一个U盘，所以在多次安装完成后遇到，无法启动<code>Linux</code>时，建议更换U盘，我后来换成了TF卡就没有出现无法启动的问题</p>
+<p>还有安装的时候斐讯的系统版本不能是最新版的，最好刷一个降级包</p>
+<h3 id="下载系统"><a href="#下载系统" class="headerlink" title="下载系统"></a>下载系统</h3><p>斐讯T1的<code>cpu</code>是Amlogic 晶晨S912，对应的系统被国外的大神制作好上传到<code>Yandex Disk</code>,所以下载系统可能需要FQ</p>
+<p><a href="https://yadi.sk/d/pHxaRAs-tZiei" target="_blank" rel="noopener">系统下载地址</a></p>
+<p>进去会有各个版本的文件夹，我使用的是<code>5.91</code>,所以进入<code>5.91</code>文件中，下载需要的系统。</p>
+<p>一个版本会有多个种类的系统文件，区别是<code>Debian</code>和<code>Ubuntu</code>,还有对应的桌面版还是服务版，下载自己需要的一个就好。</p>
+<h3 id="写入U盘"><a href="#写入U盘" class="headerlink" title="写入U盘"></a>写入U盘</h3><p>下载完系统，就可以把写入U盘了</p>
+<p>我使用的软件是<code>balenaEtcher</code>, <a href="https://www.balena.io/etcher/" target="_blank" rel="noopener">下载地址</a>，选择对应系统的版本就好（是你电脑的系统）</p>
+<p><code>balenaEtcher</code>的使用也很简单，第一项选择上面下载好的<code>linux</code>系统，第二项选择你的U盘（写入操作会格式化U盘，注意U盘数据备份），接着点击第三项<code>Flash</code>,等待写入成功</p>
+<h3 id="修改dtb"><a href="#修改dtb" class="headerlink" title="修改dtb"></a>修改dtb</h3><p>写入完成的U盘会有个叫<code>BOOT</code>的盘符，这时我们需要修改里面的<code>dtb</code>,斐讯T1使用的<code>dtb</code>叫做<code>meson-gxm-q201.dtb</code>,我们可以在<code>Boot/dtb/</code>文件夹中找到。</p>
+<p>使用文本编辑器打开<code>BOOT</code>盘符中的<code>boot.ini</code>文件，修改里面的<code>setenv dtb_name</code>为<code>&quot;/dtb/meson-gxm-q201.dtb&quot;</code>,修改完该行如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenv dtb_name &quot;/dtb/meson-gxm-q201.dtb&quot;</span><br></pre></td></tr></table></figure>
+<p>使用文本编辑器打开<code>BOOT</code>盘符中的<code>uEnv.ini</code>文件，修改里面的<code>dtb_name</code>为<code>/dtb/meson-gxm-q201.dtb</code>,修改完该行如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dtb_name=/dtb/meson-gxm-q201.dtb</span><br></pre></td></tr></table></figure>
+<p>使用文本编辑器打开<code>BOOT</code>盘符中<code>extlinux</code>文件夹下的<code>extlinux.conf</code>文件，修改里面的<code>FDT</code>为<code>/dtb/meson-gxm-q201.dtb</code>,修改完该行如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FDT /dtb/meson-gxm-q201.dtb</span><br></pre></td></tr></table></figure>
+<h3 id="启动Linux"><a href="#启动Linux" class="headerlink" title="启动Linux"></a>启动Linux</h3><p>将修改好的U盘插入斐讯T1的usb接口，然后给斐讯通电，斐讯启动会自动进入<code>Linux</code>系统，如果没有进入，网上的教程说在安卓的终端输入<code>reboot update</code>,斐讯T1会重启，就进入<code>Linux</code>系统了，但是我用这个不起作用，所以，我建议，没有启动<code>Linux</code>,就更换U盘，或者更换系统试试</p>
+<h3 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h3><p>如果启动了<code>Linux</code>,等待加载完成，如果加载过程中失败了，则可能是系统问题，建议更换别的版本的<code>Linux</code>系统。</p>
+<p>如果加载完成了，输入<code>root</code>登录超级用户，密码<code>1234</code>,登录成功会提示设置新的<code>root</code>密码，先输入默认密码<code>1234</code>,在输入两次新密码，设定成功。</p>
+<p>接下来按照提示，设置新用户名，和密码，已经用户信息。设置完成，就可以用新用户登录了。</p>
+<p>如果是有图形界面版本的系统，没有进入桌面，按<code>ctrl+alt+F7</code>进入桌面系统</p>
+<h3 id="设置中文字体"><a href="#设置中文字体" class="headerlink" title="设置中文字体"></a>设置中文字体</h3><p>开启中文字体<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/locale.gen # 将里面的zh_CN.UTF-8前面的#去掉</span><br></pre></td></tr></table></figure></p>
+<p>更新程序列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure></p>
+<p>更新程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure></p>
+<p>安装字体包（两种字体选一种就好）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fonts-noto-cjk</span><br><span class="line"></span><br><span class="line">sudo apt install ttf-wqy-zenhei</span><br></pre></td></tr></table></figure></p>
+<p>更新字体列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fc-cache -v</span><br></pre></td></tr></table></figure></p>
+<p>生成<code>locale</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo locale-gen</span><br></pre></td></tr></table></figure></p>
+<p>重启系统</p>
+<h3 id="远程桌面"><a href="#远程桌面" class="headerlink" title="远程桌面"></a>远程桌面</h3><p>安装<code>x11vnc</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install x11vnc</span><br></pre></td></tr></table></figure>
+<p>生成vnc密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo x11vnc -storepasswd</span><br></pre></td></tr></table></figure>
+<p>启动vnc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/USERNAME/.vnc/passwd -rfbport 5900 -shared</span><br></pre></td></tr></table></figure>
+<p>设置开机自启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#新建service</span><br><span class="line">sudo vim /etc/systemd/system/x11vnc.service</span><br><span class="line"></span><br><span class="line">#添加如下内容</span><br><span class="line">[Unit]</span><br><span class="line">Description=Start x11vnc at startup.</span><br><span class="line">After=multi-user.target</span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/USERNAME/.vnc/passwd -rfbport 5900 -shared</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>依次执行下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod u+x /etc/systemd/system/x11vnc.service</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl enable x11vnc.service</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/13/rvm管理ruby/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          rvm管理ruby
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/01/SSH Key/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SSH Key</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

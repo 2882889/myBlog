@@ -5,7 +5,11 @@ tags: [Linux]
 ---
 
 
-## Linux系统使用--Bash基础 ##
+## 前言 ##
+
+linux的bash使用相关
+
+<!-- more -->
 
 ### bash的特性 ###
 

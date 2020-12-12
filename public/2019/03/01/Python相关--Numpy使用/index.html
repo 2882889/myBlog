@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Python相关--Numpy使用 | 小商店飞的地盘</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python相关--Numpy使用">
+<meta property="og:url" content="http://yoursite.com/2019/03/01/Python相关--Numpy使用/index.html">
+<meta property="og:site_name" content="小商店飞的地盘">
+<meta property="og:description" content="前言NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-05T00:18:43.978Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python相关--Numpy使用">
+<meta name="twitter:description" content="前言NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。">
+  
+    <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/wxHeader.jpeg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">小商店飞</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一切都是梵天的一场梦</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/tags/iOS">iOS</a></li>
+				        
+							<li><a href="/tags/日常">日常</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac软件/" style="font-size: 12.5px;">Mac软件</a> <a href="/tags/OMV/" style="font-size: 10px;">OMV</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/armbian/" style="font-size: 10px;">armbian</a> <a href="/tags/iOS/" style="font-size: 17.5px;">iOS</a> <a href="/tags/我家云/" style="font-size: 10px;">我家云</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a> <a href="/tags/黑苹果/" style="font-size: 12.5px;">黑苹果</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">小商店飞</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/wxHeader.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">小商店飞</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一切都是梵天的一场梦</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/iOS">iOS</a></li>
+		        
+					<li><a href="/tags/日常">日常</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Python相关--Numpy使用" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/01/Python相关--Numpy使用/" class="article-date">
+  	<time datetime="2019-03-01T12:10:12.000Z" itemprop="datePublished">2019-03-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python相关--Numpy使用
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。</p>
+<a id="more"></a>
+<h3 id="numpy-方法"><a href="#numpy-方法" class="headerlink" title="numpy 方法"></a>numpy 方法</h3><p>创建矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">np.array([1,2,3],[2,3,4])</span><br><span class="line"></span><br><span class="line">np.array([2,3,4],dtype=np.int) //同时指定类型</span><br><span class="line"></span><br><span class="line">np.zeros((3,4)) //生成3行4列全部为0的矩阵</span><br><span class="line"></span><br><span class="line">np.ones((3,4),dtype=np.int) //生成3行4列全部为1的矩阵</span><br><span class="line"></span><br><span class="line">np.empty((3,4)) //生成3行4列为空的矩阵，里面的值全部都是接近0的值</span><br><span class="line"></span><br><span class="line">np.arange(10,20,2) //生成一个从10到20，步长为2的矩阵，不包括20</span><br><span class="line"></span><br><span class="line">np.arange(12).reshape((3,4)) //生成一个从0到11的3行4列的矩阵</span><br><span class="line"></span><br><span class="line">np.linspace(1,10,20) //生成一个从1到10，一共20段的矩阵，起始值是1结束值是10</span><br><span class="line"></span><br><span class="line">np.random.random((2,4)) //生成一个随机的2行4列矩阵</span><br></pre></td></tr></table></figure>
+<p>查看数组维度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.ndim</span><br></pre></td></tr></table></figure>
+<p>查看数组的形状</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.shape</span><br></pre></td></tr></table></figure>
+<p>查看数组的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.size</span><br></pre></td></tr></table></figure>
+<h3 id="numpy的运算"><a href="#numpy的运算" class="headerlink" title="numpy的运算"></a>numpy的运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">a=np.array([10,20,30,40]) //[10 20 30 40]</span><br><span class="line">b=np.arange(4) //[0 1 2 3]</span><br><span class="line"></span><br><span class="line">c=a+b //[10 21 32 43]</span><br><span class="line">c=a-b //[10 19 28 37]</span><br><span class="line">c=a*b //[0 20 60 120]</span><br><span class="line">c=b**4 //表示b的4次方</span><br><span class="line"></span><br><span class="line">c=10*np.sin(a) //对a的每个元素求sin再乘以10</span><br><span class="line">c=b&lt;3 //[True True True False] 每个元素是否小于3</span><br><span class="line"></span><br><span class="line">/******/</span><br><span class="line">a=np.array([[1,1],[0,1]])</span><br><span class="line">b=np.arange(4).reshape((2,2))</span><br><span class="line"></span><br><span class="line">c=a*b //元素逐个相乘 [[0 1] [0 3]]</span><br><span class="line">c=np.dot(a,b) //矩阵的乘法 [[2 4] [2 3]]</span><br><span class="line">c=a.dot(b) //矩阵乘法的另一种表示</span><br><span class="line"></span><br><span class="line">/******/</span><br><span class="line">a=np.random.random((2,4))</span><br><span class="line">np.sum(a,axis=1) //不加axis=1表示所有元素求和，axis=1表示维度,1是以行求和，0是以列求和</span><br><span class="line">np.min(a,axis=0) //求最小值 同上</span><br><span class="line">np.max(a,axis=1) //求最大值 同上</span><br><span class="line"></span><br><span class="line">/******/</span><br><span class="line">a=np.arange(2,14).reshape((3,4))</span><br><span class="line">b=np.argmin(a) //获取最小值的索引</span><br><span class="line">c=np.argmax(a) //获取最大值的索引</span><br><span class="line">d=np.mean(a) //获取平均值</span><br><span class="line">e=np.average(a) //另一种平均值算法</span><br><span class="line">f=np.median(a) //中位数</span><br><span class="line">g=np.cumsum(a) //累加，第一个值是第一个元素的值。第二个值是前两个元素相加的值</span><br><span class="line">h=np.diff(a) //相邻的差</span><br><span class="line">i=np.sort(a) //从小到大排序，每行排每行的</span><br><span class="line">j=np.transpose(a) //矩阵反向，行变成列，列变成行</span><br><span class="line">j=a.T //也是矩阵的反向</span><br><span class="line">k=np.clip(a,5,9) //小于5的数变成5，大于9的数变成9</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/17/Heroku使用记录/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Heroku使用记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/12/MAC使用密钥登录VPS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MAC使用密钥登录VPS</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 小商店飞
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

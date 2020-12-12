@@ -9,18 +9,18 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言Heroku是一个免费的云服务，据说还可以跑VPN,但是这不是我这次研究的问题，这次想把listen1-api,构建出来的js代码部署到上面，当做接口使用 一 、注册官网地址 ： https://www.heroku.com/ 注册没有难度，使用国外邮箱，能翻墙就OK 二、安装工具这个工具就是一个能在终端部署的工具heroku-cli 工具地址： https://devcenter.herok">
+  <meta name="description" content="前言Heroku是一个免费的云服务，据说还可以跑VPN,但是这不是我这次研究的问题，这次想把listen1-api,构建出来的js代码部署到上面，当做接口使用">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Heroku使用记录">
 <meta property="og:url" content="http://yoursite.com/2019/03/17/Heroku使用记录/index.html">
 <meta property="og:site_name" content="小商店飞的地盘">
-<meta property="og:description" content="前言Heroku是一个免费的云服务，据说还可以跑VPN,但是这不是我这次研究的问题，这次想把listen1-api,构建出来的js代码部署到上面，当做接口使用 一 、注册官网地址 ： https://www.heroku.com/ 注册没有难度，使用国外邮箱，能翻墙就OK 二、安装工具这个工具就是一个能在终端部署的工具heroku-cli 工具地址： https://devcenter.herok">
+<meta property="og:description" content="前言Heroku是一个免费的云服务，据说还可以跑VPN,但是这不是我这次研究的问题，这次想把listen1-api,构建出来的js代码部署到上面，当做接口使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-22T15:58:43.810Z">
+<meta property="og:updated_time" content="2019-08-05T00:02:02.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Heroku使用记录">
-<meta name="twitter:description" content="前言Heroku是一个免费的云服务，据说还可以跑VPN,但是这不是我这次研究的问题，这次想把listen1-api,构建出来的js代码部署到上面，当做接口使用 一 、注册官网地址 ： https://www.heroku.com/ 注册没有难度，使用国外邮箱，能翻墙就OK 二、安装工具这个工具就是一个能在终端部署的工具heroku-cli 工具地址： https://devcenter.herok">
+<meta name="twitter:description" content="前言Heroku是一个免费的云服务，据说还可以跑VPN,但是这不是我这次研究的问题，这次想把listen1-api,构建出来的js代码部署到上面，当做接口使用">
   
     <link rel="alternative" href="/atom.xml" title="小商店飞的地盘" type="application/atom+xml">
   
@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a>
+						<a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Mac软件/" style="font-size: 12.5px;">Mac软件</a> <a href="/tags/OMV/" style="font-size: 10px;">OMV</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/VPS那些事/" style="font-size: 10px;">VPS那些事</a> <a href="/tags/armbian/" style="font-size: 10px;">armbian</a> <a href="/tags/iOS/" style="font-size: 17.5px;">iOS</a> <a href="/tags/我家云/" style="font-size: 10px;">我家云</a> <a href="/tags/日常/" style="font-size: 15px;">日常</a> <a href="/tags/黑苹果/" style="font-size: 12.5px;">黑苹果</a>
 					</div>
 				</section>
 				
@@ -218,6 +218,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Heroku</code>是一个免费的云服务，据说还可以跑<code>VPN</code>,但是这不是我这次研究的问题，这次想把<code>listen1-api</code>,构建出来的<code>js</code>代码部署到上面，当做接口使用</p>
+<a id="more"></a>
 <h3 id="一-、注册"><a href="#一-、注册" class="headerlink" title="一 、注册"></a>一 、注册</h3><p>官网地址 ： <a href="https://www.heroku.com/" target="_blank" rel="noopener">https://www.heroku.com/</a></p>
 <p>注册没有难度，使用国外邮箱，能翻墙就OK</p>
 <h3 id="二、安装工具"><a href="#二、安装工具" class="headerlink" title="二、安装工具"></a>二、安装工具</h3><p>这个工具就是一个能在终端部署的工具<code>heroku-cli</code></p>
@@ -234,7 +235,7 @@
 <p>创建完成会有两个地址，一个是访问的网址，一个是代码仓库的地址</p>
 <p>我的测试的地址是如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://nodetestdemo.herokuapp.com/ | https://git.heroku.com/nodetestdemo.git</span><br></pre></td></tr></table></figure>
-<h4 id="推送代码"><a href="#推送代码" class="headerlink" title="推送代码"></a>推送代码</h4><p>使用<code>git</code>把代码推送的上面生成的仓库中</p>
+<h4 id="推送代码"><a href="#推送代码" class="headerlink" title="推送代码"></a>推送代码</h4><p>使用<code>git</code>把代码推送到上面生成的仓库中</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;commit&quot;</span><br><span class="line">git remote add origin https://git.heroku.com/app-name.git</span><br><span class="line">git remote -v</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 <p>推送完成后，就可以访问上面的地址，查看代码是否部署成功</p>
 
@@ -246,9 +247,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/06/29/Mac软件--Keyboard Maestro/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Mac软件--Keyboard Maestro
+        
+      </div>
+    </a>
   
-    <a href="/2019/02/12/MAC使用密钥登录VPS/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MAC使用密钥登录VPS</div>
+  
+    <a href="/2019/03/01/Python相关--Numpy使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python相关--Numpy使用</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -267,7 +277,7 @@
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2019 小商店飞
+        &copy; 2020 小商店飞
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>

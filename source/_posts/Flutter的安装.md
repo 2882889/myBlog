@@ -8,6 +8,8 @@ tags: [Flutter]
 
 记录一下安装`flutter`的过程，方便以后查询
 
+<!-- more -->
+
 ### 安装 ###
 
 下载`flutter`:

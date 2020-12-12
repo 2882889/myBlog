@@ -1,7 +1,16 @@
-# numpy使用
+---
+title: Python相关--Numpy使用
+date: 2019-3-1 20:10:12
+tags: [Python]
+---
 
+## 前言 ##
 
-## numpy 方法
+NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。
+
+<!-- more -->
+
+### numpy 方法 ###
 
 创建矩阵
 
@@ -43,7 +52,7 @@ array.shape
 array.size
 ```
 
-### numpy的运算
+### numpy的运算 ###
 
 ```
 a=np.array([10,20,30,40]) //[10 20 30 40]

@@ -9,7 +9,7 @@ tags: Linux
 
 `Heroku`是一个免费的云服务，据说还可以跑`VPN`,但是这不是我这次研究的问题，这次想把`listen1-api`,构建出来的`js`代码部署到上面，当做接口使用
 
-
+<!-- more -->
 
 ### 一 、注册 ###
 
@@ -74,7 +74,7 @@ https://nodetestdemo.herokuapp.com/ | https://git.heroku.com/nodetestdemo.git
 
 #### 推送代码 ####
 
-使用`git`把代码推送的上面生成的仓库中
+使用`git`把代码推送到上面生成的仓库中
 
 ```
 git init
