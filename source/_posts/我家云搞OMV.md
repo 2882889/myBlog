@@ -53,7 +53,7 @@ apt upgrade
 
 ## omv安装
 
-、、、
+``` sh
 <!--下载key-->
 wget http://packages.openmediavault.org/public/archive.key
 <!--添加key-->
@@ -67,7 +67,7 @@ deb http://packages.openmediavault.org/public usul main
 apt update
 <!--安装omv-->
 apt install openmediavaul
-、、、
+```
 
 漫长的等待之后，就安装好了OMV，用浏览器访问我家云ip，就能看到登录页面。
 账号： admin
@@ -78,7 +78,7 @@ apt install openmediavaul
 OMV5默认是没有OMV-Extras的，需要我们自己安装
 [官网](https://omv-extras.org/)给出的教程是这样的，在终端使用root用户运行下面命令
 
-```
+```sh
 wget -O - https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/install | bash
 ```
 

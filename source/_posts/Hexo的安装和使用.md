@@ -126,5 +126,43 @@ deploy:
   branch: master
 ```
 
+#### 2021更新问题
+
+今天在一台新电脑上部署的时候发现进入的是空白页，在本地测试的时候有如下错误提示
+
+```sh
+(node:9876) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9876) Warning: Accessing non-existent property 'column' of module exports inside circular dependency
+(node:9876) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+(node:9876) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency
+(node:9876) Warning: Accessing non-existent property 'column' of module exports inside circular dependency
+(node:9876) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
+```
+
+
+
+在`github`上看，部署的`index`文件没有内容,
+
+问题原因： `node.js`版本太高了
+
+解决办法： 降级`node.js`
+
+步骤：
+
+```sh
+//安装node.js版本管理软件 n
+sudo npm install -g n
+
+//查看n 是否安装成功
+n -V
+
+//安装指定版本 node
+sudo n 13.14
+
+```
+
+
+
 
 
