@@ -79,3 +79,30 @@ crontab -e #编辑配置文件内容
 * */4 * * * ~/xxx.sh #表示每四分之一小时执行一次xxx.sh脚本
 ```
 
+### MacOS使用相关
+
+* 脚本的`PATH`可能和在终端运行时候有些区别，导致部分命令无法使用，解决办法是在脚本第一行添加`PATH`
+
+  ```shell
+  PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+  ```
+
+* 脚本的运行路径可能和在终端运行有区别，所以脚本中的路径都要使用绝对路径，如果想使用相对路径，需要手动`cd`到相应的路径，或在配置文件中先`cd`到相应路径
+
+  ```shell
+  15 7 * * * cd /home/xxxx/Documents/Scripts && ./email_ip_script.sh
+  ```
+
+* MacOS下的`crontab`对脚本路径有要求，比如：`Documents`目录下的脚本都没法执行，所以需要给`crontab`添加所有文件权限，添加方法，`系统偏好设置`-`安全性与隐私`-`隐私` - `完全磁盘访问权限` ，把`/usr/sbin/cron` 拖入其中
+
+* ```shell
+    # 启动
+    sudo /usr/sbin/cron start
+    # 重启
+    sudo /usr/sbin/cron restart
+    # 停止
+    sudo /usr/sbin/cron stop
+  ```
+
+  
+
