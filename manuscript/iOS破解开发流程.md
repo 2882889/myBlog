@@ -48,6 +48,21 @@
 
 ##### Cycript封装
 
+可以将常用的方法写在`xxx.cy`文件中，并移动到手机的`usr/lib/cycript0.9/`路径下，在 使用的时候直接`import 文件名`
+
+.cy 格式：
+
+```javascript
+(function(exports){
+		exports.a = 10;
+		exports.add = function(a,b) {
+				return a + b;
+		};
+})(exports) 
+```
+
+
+
 
 
 
