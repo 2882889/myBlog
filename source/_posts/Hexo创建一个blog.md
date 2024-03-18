@@ -1,6 +1,7 @@
 ---
 title: Hexo创建一个blog
 date: 2016-08-03 20:38:44
+categories: [Hexo]
 tags: [日常,Hexo]
 ---
 
@@ -64,6 +65,14 @@ eg：
 
 ```
 http://localhost:4000/about
+```
+
+### 布局文件
+
+在新建文章时，Hexo 会根据 scaffolds 文件夹内相对应的文件来建立文件，例如：
+
+```
+hexo new photo "My Gallery"
 ```
 
 

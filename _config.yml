@@ -6,8 +6,8 @@
 title: 小商店飞的地盘 
 subtitle: 一切都是梵天的一场梦
 description:
-author: 小商店飞
-language: zh-Hans
+author: aiopoe
+language: zh-CN
 timezone:
 
 # URL
@@ -63,7 +63,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: smackdown
+# theme: smackdown
+theme: vivia
 
 jsonContent:
   meta: false
@@ -88,6 +89,6 @@ jsonContent:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/2882889/2882889.github.io.git
+  repo: git@github.com:2882889/2882889.github.io.git
   #repo: https://git.coding.net/aiopoe/blog.git
   branch: master

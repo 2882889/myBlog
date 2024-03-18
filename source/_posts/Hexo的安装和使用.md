@@ -1,9 +1,9 @@
 ---
 title: Hexo的安装和使用
 date: 2016-08-02 19:13:00
+categories: [Hexo]
 tags: [日常,Hexo]
 ---
-
 
 ### 一、hexo的安装
 
@@ -140,13 +140,11 @@ deploy:
 (node:9876) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency
 ```
 
-
-
 在`github`上看，部署的`index`文件没有内容,
 
-问题原因： `node.js`版本太高了
+问题原因: `node.js`版本太高了
 
-解决办法： 降级`node.js`
+解决办法一: 降级`node.js`
 
 步骤：
 
@@ -161,6 +159,10 @@ n -V
 sudo n 13.14
 
 ```
+
+解决办法二: 
+
+修改package.json中的`hexo-renderer-stylus`的版本号为`^2.0.1`, 然后重新npm安装
 
 
 

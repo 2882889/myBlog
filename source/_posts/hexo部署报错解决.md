@@ -1,7 +1,8 @@
 ---
 title: hexo部署报错解决
 date: 2017-12-06 23:21:15
-tags: [日常]
+categories: [Hexo]
+tags: [日常,Hexo]
 ---
 
 ## 前言 ##
